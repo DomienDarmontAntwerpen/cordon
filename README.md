@@ -9,6 +9,7 @@
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-quality_check-F7931E?logo=scikitlearn&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-ledger-003B57?logo=sqlite&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+[![Tests](https://github.com/DomienDarmontAntwerpen/cordon/actions/workflows/ci.yml/badge.svg)](https://github.com/DomienDarmontAntwerpen/cordon/actions/workflows/ci.yml)
 
 > **In short:** every AI request from a company's apps passes through Cordon first. It masks
 > personal data before it leaves the company, blocks manipulation attempts, keeps each team within
