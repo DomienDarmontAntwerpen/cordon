@@ -1,0 +1,39 @@
+# One Cordon per client organization, with the client's own AI keys (.env)
+# and its own data/ volume. The apps talk to the failsafe, which talks to Cordon.
+
+services:
+  # The apps talk to the failsafe (port 8080), which passes everything to Cordon,
+  # and goes straight to the provider only when Cordon cannot be reached.
+  # See deploy/failsafe.conf.template for exactly when, and the trade-off.
+  failsafe:
+    image: nginx:1.27.3-alpine
+    restart: unless-stopped
+    depends_on: [cordon]
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?OPENAI_API_KEY must be set in .env}
+      FAILSAFE_DIRECT_URL: ${FAILSAFE_DIRECT_URL:-https://api.openai.com}  # scheme://host only, no path
+      FAILSAFE_DIRECT_HOST: ${FAILSAFE_DIRECT_HOST:-api.openai.com}
+    volumes:
+      - ./deploy/failsafe.conf.template:/etc/nginx/templates/default.conf.template:ro
+    ports:
+      # Loopback by default. To let apps on other machines reach it, set
+      # FAILSAFE_BIND to this host's internal address - never a public one.
+      - "${FAILSAFE_BIND:-127.0.0.1}:${FAILSAFE_PORT:-8080}:8080"
+
+  cordon:
+    build: .
+    restart: unless-stopped
+    read_only: true
+    env_file: .env
+    ports:
+      # Loopback-only publish; a TLS-terminating reverse proxy sits in front
+      # of this in production, matching CORDON_BIND's own default.
+      - "127.0.0.1:${CORDON_PORT:-8787}:8787"
+    volumes:
+      # The only writable path: the SQLite ledger/cache/tenant database.
+      # Everything else in the read-only image is immutable at runtime.
+      - ./data:/app/data
+    tmpfs:
+      # Writable scratch space for libraries that need a real temp dir
+      # under the read-only root filesystem.
+      - /tmp

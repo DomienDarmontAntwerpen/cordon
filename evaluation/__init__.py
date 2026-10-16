@@ -1,0 +1,1 @@
+"""Proof and measurement, run by hand: the benchmark and route proof, the quality check's training, evaluation-set downloads, and the cache, overhead, load and failsafe measurements. Run as `python -m evaluation.<name>`."""

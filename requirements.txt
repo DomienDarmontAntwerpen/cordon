@@ -1,0 +1,26 @@
+# Cordon dependencies, pinned to the exact versions verified against this spec
+# on 2026-10-11 (macOS, Apple Silicon, Python 3.11). Install order matters: torch
+# must come first from the CPU-only index, otherwise pip may pull a CUDA build.
+#
+# Install:
+#   .venv/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   .venv/bin/pip install -r requirements.txt
+torch==2.14.1
+fastapi==0.143.0
+uvicorn[standard]==0.54.0
+httpx==0.28.1
+openai==2.54.0
+litellm==1.105.0
+spacy==3.8.16
+opencv-python-headless==5.0.0.93
+scikit-learn==1.9.1
+joblib==1.6.0
+langfuse==4.17.0
+sentence-transformers==6.1.0
+numpy==2.4.6
+pyyaml==6.0.3
+jinja2==3.1.6
+jsonschema==4.26.0
+cryptography==50.0.2
+python-dotenv==1.2.4
+pytest==9.1.1

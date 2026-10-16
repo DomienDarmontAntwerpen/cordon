@@ -1,0 +1,160 @@
+# Cordon global configuration. Loaded once at startup by settings.py. Per-tenant
+# settings live in the database (store.py) and start from tenant_defaults below;
+# this file only holds settings shared by every tenant in this deployment.
+#
+# Model names and prices were checked against the installed LiteLLM version
+# (litellm==1.105.0, LITELLM_LOCAL_MODEL_COST_MAP) on 2026-10-11.
+
+# --- Section: money — LiteLLM prices are USD; everything stored and displayed is EUR ---
+money:
+  usd_to_eur: 0.92
+  # Only for models LiteLLM's local cost map does not know. Empty by default:
+  # all model_aliases below are known to LiteLLM.
+  pricing_overrides: {}
+
+# --- Section: models — the pool Cordon may route to, and the aliases a client may request ---
+models:
+  # The only models a client may ever request (gateway.py maps alias -> this
+  # LiteLLM name, or returns 400 for anything else). A model without a known
+  # LiteLLM price also returns 400 - fail closed, so no cost can bypass budgets.
+  model_aliases:
+    gpt-4o: openai/gpt-4o
+    gpt-4o-mini: openai/gpt-4o-mini
+    gpt-4.1-mini: openai/gpt-4.1-mini
+    gpt-4.1-nano: openai/gpt-4.1-nano
+    mistral-small: mistral/mistral-small-latest
+    mistral-large: mistral/mistral-large-latest
+    deepseek-chat: deepseek/deepseek-chat
+
+  # The global routing pool, cheapest first. DeepSeek is defined in
+  # model_aliases above but deliberately excluded here: it is China-hosted and
+  # only enters a tenant's pool if that tenant explicitly allows the
+  # "deepseek" provider (see tenant_defaults.allowed_providers).
+  default_pool: [gpt-4.1-nano, mistral-small, gpt-4o-mini, gpt-4.1-mini, mistral-large, gpt-4o]
+
+  # The cost baseline and top of the escalation ladder, unless a tenant overrides it.
+  default_strong: gpt-4o
+
+  # Models that return logprobs (their own certainty per token), which the quality gate uses.
+  # Only these are asked; a model that rejects the parameter must never be on this list
+  # (checked with a live call; the gpt-5 family rejects it).
+  logprobs_models: [gpt-4o, gpt-4o-mini, gpt-4.1-mini, gpt-4.1-nano]
+
+  # Capability overrides where LiteLLM's supports_vision / supports_response_schema
+  # / supports_function_calling is wrong or missing for a model. LiteLLM already
+  # reports deepseek-chat's vision support correctly (false); its json_schema
+  # support is reported true but DeepSeek's structured-output mode is not
+  # reliable enough to trust for the quality check's JSON-schema validation path,
+  # so it is force-disabled here.
+  capability_overrides:
+    deepseek-chat:
+      json_schema: false
+      vision: false
+
+  # Per-provider data residency and processing-terms notes, shown in the audit
+  # and dashboard and used to justify the secure tenant_defaults.allowed_providers below.
+  providers:
+    mistral:
+      region: eu
+      note: "Mistral AI, EU-hosted (France). No US CLOUD Act exposure."
+    openai:
+      region: "us, with EU data processing terms"
+      note: "US-hosted; OpenAI offers an EU data processing addendum (DPA), but the underlying infrastructure is US-based."
+    deepseek:
+      region: cn
+      note: "China-hosted. Off by default for tenants handling EU personal data - see SECURITY.md, data residency."
+
+# --- Section: thresholds — quality and cache decision points ---
+thresholds:
+  # The quality check's thresholds belong to the routes: each route in routing_table.yaml carries
+  # the threshold it was proven with (evaluation/route_proof.py).
+  semantic_threshold: 0.97
+  cache_ttl_seconds: 3600
+  circuit_breaker:
+    window_seconds: 60
+    max_signatures: 5
+    similarity: 0.95
+
+# --- Section: context — token budgets enforced by optimize.py before the LLM call ---
+context:
+  history_max_tokens: 6000
+  tool_output_max_tokens: 2000
+
+# --- Section: request_limits — admission-time size limits, checked before any expensive work ---
+request_limits:
+  max_body_bytes: 20000000
+  max_messages: 200
+  # Checked from the image header before decoding, so an oversized image is
+  # rejected (413) before Cordon ever decompresses it.
+  max_image_pixels: 40000000
+  max_tags: 5
+  tag_regex: '^[A-Za-z0-9_.:=-]{1,64}$'
+
+# --- Section: auth — throttling for repeated authentication failures, per client IP ---
+auth:
+  fail_limit: 10
+  fail_window_seconds: 300
+  throttle_seconds: 300
+
+# --- Section: server — how much work one Cordon process takes on at once ---
+server:
+  # Threads that run requests (everything after the API-key check). Each
+  # in-flight model call holds one thread for its whole duration.
+  worker_threads: 32
+  # Requests allowed in flight (running + waiting for a thread). Above this,
+  # Cordon answers 503 "server_busy" with Retry-After at once, instead of
+  # letting a queue grow until every client times out.
+  max_in_flight: 96
+
+# --- Section: provider — limits on every call to an AI provider ---
+provider:
+  # Seconds before a provider call is abandoned. Step 7 then fails over to the
+  # next model on the ladder; without a limit, a hung provider would hold the
+  # request open indefinitely. Applies to streaming too.
+  timeout_seconds: 60
+
+# --- Section: retention — ledger/cache lifecycle and model-file integrity ---
+retention:
+  retention_days: 90
+  # SHA-256 of src/models/model.pkl, written by train.py (.venv/bin/python -m evaluation.train).
+  # Re-run train.py and commit both files together if model.pkl ever changes -
+  # the startup integrity check and quality.score_answer() both refuse to load
+  # a model.pkl that does not match this hash.
+  model_sha256: "c4ddf94cf8e271be6a47297f87870531630d7a365e32d1b3a8d3f8be6b970692"
+
+# --- Section: cors — off by default; Cordon is designed for server-to-server use ---
+cors:
+  origins: []
+
+# --- Section: tenant_defaults — starting point for a new tenant; the secure choice throughout ---
+tenant_defaults:
+  mode: observe
+  # Null = inherit models.default_pool. A tenant may narrow this to a subset.
+  pool: null
+  strong: null  # null = inherit models.default_strong
+  # Nothing is switched on until a client turns it on, feature by feature.
+  features: []
+  allowed_providers: [mistral, openai]
+  pii_action: mask
+  # Also mask personal data in the app's own system message. Off by default:
+  # masking it changes the stable prompt prefix, which ends the provider's
+  # prompt-cache discount. Turn it on for RAG apps that paste documents there.
+  mask_instructions: false
+  injection_action: flag
+  output_pii_action: redact
+  output_leak_action: redact
+  leak_min_words: 12
+  security_fail_mode: closed
+  telemetry_content: none
+  rpm: 60
+  tpm: 60000
+  budget_daily_eur: 20.0
+  budget_monthly_eur: 300.0
+  budget_action: block
+  max_tokens_default: 1024
+  max_input_tokens: 16000
+  max_images: 4
+  image_max_side: 512
+  image_detail_low_for_photos: true
+  cache_max_temperature: 1.0
+  holdout_pct: 0.05

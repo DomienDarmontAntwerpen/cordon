@@ -1,0 +1,4871 @@
+{
+ "summary": {
+  "classification": {
+   "requests": 100,
+   "eur_direct": 0.0631,
+   "eur_cordon": 0.0167,
+   "saved_pct": 73.5,
+   "quality_direct": 0.93,
+   "quality_cordon": 0.94,
+   "quality_verdict": "pass",
+   "quality_interval": [
+    0.0,
+    0.03
+   ]
+  },
+  "support": {
+   "requests": 80,
+   "eur_direct": 0.1996,
+   "eur_cordon": 0.0341,
+   "saved_pct": 82.9,
+   "quality_direct": 0.282,
+   "quality_cordon": 0.347,
+   "quality_verdict": "warn",
+   "quality_interval": [
+    0.042,
+    0.089
+   ]
+  },
+  "chat": {
+   "requests": 60,
+   "eur_direct": 0.2147,
+   "eur_cordon": 0.2047,
+   "saved_pct": 4.7,
+   "quality_direct": 0.375,
+   "quality_cordon": 0.399,
+   "quality_verdict": "warn",
+   "quality_interval": [
+    -0.003,
+    0.05
+   ]
+  },
+  "summaries": {
+   "requests": 60,
+   "eur_direct": 0.1662,
+   "eur_cordon": 0.0412,
+   "saved_pct": 75.2,
+   "quality_direct": 0.461,
+   "quality_cordon": 0.445,
+   "quality_verdict": "warn",
+   "quality_interval": [
+    -0.041,
+    0.008
+   ]
+  },
+  "whole day": {
+   "requests": 300,
+   "eur_direct": 0.6436,
+   "eur_cordon": 0.2967,
+   "saved_pct": 53.9,
+   "quality_direct": 0.553,
+   "quality_cordon": 0.575,
+   "quality_verdict": "warn",
+   "quality_interval": [
+    0.011,
+    0.035
+   ]
+  }
+ },
+ "records": [
+  {
+   "id": "chat_29",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035972000000000005,
+   "score": 0.2684345210575228,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_29",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003954,
+   "score": 0.35565458899837427,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_49",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.004531,
+   "score": 0.5101115843233713,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_49",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004892,
+   "score": 0.5944903163915578,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025093000000000003,
+   "score": 0.22081667958722728,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.000576,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0018308,
+   "score": 0.2978820228109173,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 5.3e-05,
+   "score": 0.44959737324632726,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_299",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006992000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_299",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_372",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006118,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_372",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_446",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006026000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_446",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_2753",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005497000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2753",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000104,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_806",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.00043010000000000005,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_806",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_42",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0034983000000000006,
+   "score": 0.28400195731795486,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_42",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004542,
+   "score": 0.3586955141370525,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6031",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004669000000000001,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6031",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.3e-05,
+   "score": 0.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_715",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008418000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_715",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_4753",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006739000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4753",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_58",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035535000000000007,
+   "score": 0.4025663239087245,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_58",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003919,
+   "score": 0.5712563788614596,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7084",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006509000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7084",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_19",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.003468400000000001,
+   "score": 0.26594797379332163,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_19",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003858,
+   "score": 0.2536577279450463,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_22",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.004443600000000001,
+   "score": 0.24556634837183458,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_22",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000665,
+   "score": 0.32542115449905396,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_53",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0029992,
+   "score": 0.4330328727891932,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_53",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000508,
+   "score": 0.5316681803441515,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_50",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0029624000000000004,
+   "score": 0.3078097677349451,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_50",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000259,
+   "score": 0.502504967663386,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025737000000000004,
+   "score": 0.25102591240044797,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_21",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.004680500000000001,
+   "score": 0.39667094025982025,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_21",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.00074,
+   "score": 0.3868344691064623,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0007613,
+   "score": 0.27322452230218014,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 5.3e-05,
+   "score": 0.2557597902615865,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0035558000000000005,
+   "score": 0.21283919073442892,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.000139,
+   "score": 0.3882972629241694,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025553000000000004,
+   "score": 0.2269364824985868,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_5",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0025277000000000003,
+   "score": 0.3910526918693327,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_5",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.00035,
+   "score": 0.4708863930875848,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0019964000000000006,
+   "score": 0.2987607525482337,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.44959737324632726,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_688",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005865000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_688",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000673,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6725",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006348000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6725",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.5e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_668",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006325000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_668",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 5.6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0021597,
+   "score": 0.2499150404941348,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2557597902615865,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_20",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.002944000000000001,
+   "score": 0.5407632546252515,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_20",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000509,
+   "score": 0.5269161541840585,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_13",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0036570000000000005,
+   "score": 0.48439210980250363,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_13",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000556,
+   "score": 0.5090617224140722,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_177",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0009223000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_177",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0024196000000000005,
+   "score": 0.2885446903146343,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.5329307065796606,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_331",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0003749,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_331",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 5.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0029141000000000006,
+   "score": 0.2272899409535214,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6003",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006417000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6003",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_1257",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006095,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_1257",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0026588000000000002,
+   "score": 0.28085171930568736,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.5329307065796606,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0021597,
+   "score": 0.2354887565291132,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2557597902615865,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7176",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006233,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7176",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_9",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.005303800000000001,
+   "score": 0.33392291970652677,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_9",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.005944,
+   "score": 0.326017325165364,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0032384000000000007,
+   "score": 0.23731384461071328,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.003523,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_157",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007498,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_157",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_9",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0031579000000000004,
+   "score": 0.28328187939941246,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_9",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.003217,
+   "score": 0.2663289973346602,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3229",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005980000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3229",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_21",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0019481000000000001,
+   "score": 0.36229177251938854,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_21",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.002596,
+   "score": 0.3424628161248706,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7250",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0003151,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7250",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000489,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_11",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0042205,
+   "score": 0.41231958477713376,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_11",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.004383,
+   "score": 0.4172763826969921,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_14",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0031142,
+   "score": 0.2714916886827278,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_14",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000317,
+   "score": 0.40139148139605557,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_13",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0022425000000000006,
+   "score": 0.5341199694610224,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_13",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003342,
+   "score": 0.19418084984319214,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_31",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.002415,
+   "score": 0.5988362218588813,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_31",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000224,
+   "score": 0.5044479178480504,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_3021",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.000759,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3021",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_35",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0037973000000000004,
+   "score": 0.5070561236805385,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_35",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.005042,
+   "score": 0.3228146863559073,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_582",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005359000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_582",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_22",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0032729,
+   "score": 0.3926424881091717,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_22",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.002968,
+   "score": 0.3770814519079904,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_19",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0018952000000000003,
+   "score": 0.407691520557069,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_19",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.001665,
+   "score": 0.512926650798227,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2379",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006831000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2379",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.001228,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4246",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005106,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4246",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0037168,
+   "score": 0.2412304106880637,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7545",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008671000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7545",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_24",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0008970000000000001,
+   "score": 0.2733626480839679,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_24",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 3.8e-05,
+   "score": 0.2947206120741995,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_112",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008349000000000001,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_112",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.8e-05,
+   "score": 0.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_4158",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006394000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4158",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000105,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025553000000000004,
+   "score": 0.2258707115899271,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_16",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0024702000000000005,
+   "score": 0.4616845166625608,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_16",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000432,
+   "score": 0.4657993057609107,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_7337",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005934000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7337",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_15",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0027209,
+   "score": 0.3299123065921064,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_15",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.003228,
+   "score": 0.30908426097287217,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_5",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0036570000000000005,
+   "score": 0.39494891500894075,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_5",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.0003,
+   "score": 0.7460590431059915,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_22",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0022655,
+   "score": 0.21128396675138192,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_22",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.002727,
+   "score": 0.29135112729658974,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_18",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0037996,
+   "score": 0.4681031716437567,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_18",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000611,
+   "score": 0.3276765709862964,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_10",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0019711000000000004,
+   "score": 0.4704108442085377,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_10",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.0003,
+   "score": 0.5277250409126282,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_6925",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007015000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6925",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_2",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0047587,
+   "score": 0.45739402136399376,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_2",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004818,
+   "score": 0.39992199889174457,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_7",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0017756000000000004,
+   "score": 0.40435330278571996,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_7",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000329,
+   "score": 0.39542570829391477,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_21",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0038041999999999998,
+   "score": 0.2654383300605465,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_21",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003863,
+   "score": 0.2530052886106892,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0022816000000000004,
+   "score": 0.2901520505068078,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.44959737324632726,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_47",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0027232000000000003,
+   "score": 0.30883063988674003,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_47",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003334,
+   "score": 0.33806504359719347,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_18",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.004071,
+   "score": 0.5341139482784514,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_18",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004676,
+   "score": 0.501496279766282,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0018837000000000003,
+   "score": 0.21550602469093358,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2557597902615865,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_739",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006532,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_739",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_1164",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007314000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_1164",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_0",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0027646000000000003,
+   "score": 0.5786534945170084,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_0",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003044,
+   "score": 0.5901683080923948,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_627",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.000644,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_627",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_5493",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005152000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_5493",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_37",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.001725,
+   "score": 0.5746056263039752,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_37",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.00187,
+   "score": 0.2861807521651773,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_234",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006095,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_234",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.5e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_54",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0029670000000000005,
+   "score": 0.5052202033324981,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_54",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000478,
+   "score": 0.5159950830007383,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_245",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006233,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_245",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_6",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0020953,
+   "score": 0.48064008118614315,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_6",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000278,
+   "score": 0.26825365638121584,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0046092,
+   "score": 0.217679124022085,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3154",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005244000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3154",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_27",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0042481,
+   "score": 0.19429132362891888,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_27",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.00433,
+   "score": 0.31827410369583786,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_856",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008418000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_856",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_53",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0031533000000000004,
+   "score": 0.2764076617808124,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_53",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003577,
+   "score": 0.2897822535729572,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0020585000000000004,
+   "score": 0.258670916941282,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2557597902615865,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_58",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0015318000000000003,
+   "score": 0.5400051662416169,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_58",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.00164,
+   "score": 0.4835638235776852,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_41",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0021436000000000003,
+   "score": 0.5056260973934966,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_41",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000355,
+   "score": 0.49407866838816056,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_595",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006946000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_595",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_38",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0019527000000000004,
+   "score": 0.32253520597111096,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_38",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000258,
+   "score": 0.5289289422438178,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_38",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0032614000000000007,
+   "score": 0.4770824201230152,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_38",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000513,
+   "score": 0.39308584077017644,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_523",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006463000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_523",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_9",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0033741000000000005,
+   "score": 0.3556188913970307,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_9",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000556,
+   "score": 0.3729290159897693,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0027577000000000005,
+   "score": 0.24290758592111095,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0006302,
+   "score": 0.3425814685998139,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 5.1e-05,
+   "score": 0.21893869049247652,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_7370",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005083,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7370",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.5e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_484",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005520000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_484",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000163,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_52",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.002369,
+   "score": 0.5053750404793038,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_52",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000403,
+   "score": 0.5015133655668603,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_6",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0024886,
+   "score": 0.3152373905181885,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_6",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.002393,
+   "score": 0.41766997161629166,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_409",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007291,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_409",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000102,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_30",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0026105000000000004,
+   "score": 0.474836552207709,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_30",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000432,
+   "score": 0.5288929596925392,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_34",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0034615,
+   "score": 0.46516376976772467,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_34",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000537,
+   "score": 0.35907209164057025,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_167",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005290000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_167",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000136,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_1327",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006026000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_1327",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.3e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.004117000000000001,
+   "score": 0.23684373682840884,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.30496392959083607,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_761",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005359000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_761",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_6430",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004554,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6430",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_25",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0033695000000000005,
+   "score": 0.5134699149049206,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_25",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003947,
+   "score": 0.5737324399571775,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_8",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0006003000000000001,
+   "score": 0.295758353401196,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_8",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 6.2e-05,
+   "score": 0.2540255662906601,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_39",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.004379200000000001,
+   "score": 0.3846245197688832,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_39",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.004039,
+   "score": 0.5022981608355487,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_6",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0033948000000000008,
+   "score": 0.26300284518257994,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_6",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004136,
+   "score": 0.27620093734924406,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_1",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0025530000000000006,
+   "score": 0.4789191011909966,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_1",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000432,
+   "score": 0.5056923051429875,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_7205",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005957000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_7205",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 4.7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_6997",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005543000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6997",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000619,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_190",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007130000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_190",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_0",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0033994000000000003,
+   "score": 0.2706808608065369,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_0",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000557,
+   "score": 0.5257795007961973,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_23",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0038134,
+   "score": 0.5215073003204441,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_23",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003882,
+   "score": 0.4439257993906311,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0026312000000000006,
+   "score": 0.29794628425026165,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.5329307065796606,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_42",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0027163000000000005,
+   "score": 0.4948234918719312,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_42",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000423,
+   "score": 0.4967236149878729,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_6415",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005865000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6415",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.3e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0016721000000000001,
+   "score": 0.26871410837281223,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2557597902615865,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0022517000000000006,
+   "score": 0.2842969084640898,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_842",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005014,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_842",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 5.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_47",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0023759000000000002,
+   "score": 0.47623301143044827,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_47",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000396,
+   "score": 0.46465240424895377,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_4",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0038502000000000007,
+   "score": 0.33491075252978225,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_4",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003729,
+   "score": 0.35598804755399455,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_5896",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007245,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_5896",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000104,
+   "score": 0.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_499",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004968,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_499",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_834",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004945,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_834",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_9",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0029831000000000002,
+   "score": 0.2704895488722645,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_9",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2663289973346602,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_601",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005566000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_601",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 5.7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025001000000000003,
+   "score": 0.20505870291681003,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0031257000000000004,
+   "score": 0.19968961854266307,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_16",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0022218000000000003,
+   "score": 0.29014662790741735,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_16",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 8.5e-05,
+   "score": 0.42344621817270917,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_41",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0037444000000000006,
+   "score": 0.2791979021450091,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_41",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000284,
+   "score": 0.5736904978752136,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_11",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0024219000000000003,
+   "score": 0.6556696647689456,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_11",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000411,
+   "score": 0.47147509662363624,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_11",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0045885000000000006,
+   "score": 0.5046369117634897,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_11",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4172763826969921,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_55",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0036846,
+   "score": 0.21587331190507833,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_55",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004136,
+   "score": 0.22668326612362644,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_24",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0014766000000000002,
+   "score": 0.27209356819187197,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_24",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2947206120741995,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_24",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.004317100000000001,
+   "score": 0.42685078156853046,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_24",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004426,
+   "score": 0.5253856854438782,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_60",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005451000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_60",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_200",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0010557000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_200",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000125,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_11",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0045885000000000006,
+   "score": 0.40876929568766346,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_11",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4172763826969921,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_49",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0033281,
+   "score": 0.5222871605779084,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_49",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000525,
+   "score": 0.5109635719127609,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_358",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0009315000000000001,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_358",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.001017,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3868",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.00035190000000000004,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3868",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_23",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0020976000000000002,
+   "score": 0.2729177724907901,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_23",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.00186,
+   "score": 0.3460409912558764,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_56",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0030843000000000008,
+   "score": 0.22294889328747813,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_56",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000448,
+   "score": 0.491702028622864,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_55",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0019573,
+   "score": 0.5564334101328566,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_55",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000303,
+   "score": 0.4115066891624814,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0029693000000000002,
+   "score": 0.2601263544546864,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_90",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007498,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_90",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_93",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005727,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_93",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_48",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0033097,
+   "score": 0.2369220075623771,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_48",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003691,
+   "score": 0.237290356418874,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0019389000000000006,
+   "score": 0.23986806101063038,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_4",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2557597902615865,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_21",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0020953,
+   "score": 0.368968760550543,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_21",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3424628161248706,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_15",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0039583,
+   "score": 0.5270887832264523,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_15",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.00498,
+   "score": 0.5153619121479732,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0035052000000000004,
+   "score": 0.2637904635791121,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_57",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0024679000000000003,
+   "score": 0.56922134130429,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_57",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000365,
+   "score": 0.4314654119142139,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0006394000000000001,
+   "score": 0.28901586836616466,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.21893869049247652,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_50",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0014973,
+   "score": 0.47362320644910944,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_50",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.001461,
+   "score": 0.48269312346207743,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_29",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0034109,
+   "score": 0.5269021815267102,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_29",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000541,
+   "score": 0.43889919468633515,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_16",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0042297,
+   "score": 0.28485422607336064,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_16",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004997,
+   "score": 0.2998160198699355,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_4",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0038663000000000005,
+   "score": 0.3315449484059068,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_4",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000623,
+   "score": 0.3497561863226484,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_17",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0028842000000000004,
+   "score": 0.26420410714306675,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_17",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.003866,
+   "score": 0.26660535825964626,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_44",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0019021000000000003,
+   "score": 0.5480270294732945,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_44",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000319,
+   "score": 0.5231880327550377,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0028152000000000003,
+   "score": 0.29454324701444695,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.5329307065796606,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_46",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0032269000000000004,
+   "score": 0.44390466559591996,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_46",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003759,
+   "score": 0.6072009261815313,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0023552000000000004,
+   "score": 0.3005259100717443,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.44959737324632726,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0026128000000000006,
+   "score": 0.29928277208773524,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.5329307065796606,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_12",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0005957000000000001,
+   "score": 0.29183642353330336,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_12",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.000534,
+   "score": 0.2672165616353353,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_66",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008257000000000001,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_66",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000827,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_212",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005198000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_212",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_506",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007452000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_506",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025277000000000003,
+   "score": 0.2014627507076928,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_10",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0031326,
+   "score": 0.6048086137279098,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_10",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003006,
+   "score": 0.5575961853663126,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6253",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006877000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6253",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_6",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0022678000000000004,
+   "score": 0.32181487933492864,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_6",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3343366382829583,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_26",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0019642,
+   "score": 0.2840156114082397,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_26",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 9.5e-05,
+   "score": 0.3504156955254121,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_12",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0006969000000000001,
+   "score": 0.26225376715425586,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_12",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.2672165616353353,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0023989000000000007,
+   "score": 0.24473928610483806,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_54",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0033396000000000007,
+   "score": 0.4625583531497137,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_54",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000318,
+   "score": 0.31618001996254436,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_17",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0053682,
+   "score": 0.34407441171945313,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_17",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.006049,
+   "score": 0.44924515455138164,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_587",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005221000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_587",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.8e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_59",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0032821000000000005,
+   "score": 0.36372377869183037,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_59",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000528,
+   "score": 0.37080402684024,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_57",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0031234000000000006,
+   "score": 0.4767690906228945,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_57",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003582,
+   "score": 0.46648608044202594,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_52",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0053360000000000005,
+   "score": 0.2494197188725745,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_52",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000358,
+   "score": 0.2518846124888741,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_8",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.004199800000000001,
+   "score": 0.5100035967548152,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_8",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004421,
+   "score": 0.5150522933705153,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_5",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0010235,
+   "score": 0.4953549342996934,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_5",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.001075,
+   "score": 0.4166715578395319,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3921",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006279,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3921",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000102,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_15",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0028267000000000006,
+   "score": 0.4967896198028843,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_15",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000442,
+   "score": 0.5016286278948372,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_835",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008096000000000002,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_835",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_12",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0029601000000000002,
+   "score": 0.3071397063778896,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_12",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000457,
+   "score": 0.301752135273098,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_776",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006072000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_776",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_3",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0024265000000000003,
+   "score": 0.5224036833866924,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_3",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000368,
+   "score": 0.49272742692162,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_3",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0019527000000000004,
+   "score": 0.3315716098856043,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_3",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000252,
+   "score": 0.47301602210754007,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_40",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0040296,
+   "score": 0.5019332682428185,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_40",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000665,
+   "score": 0.4931284526521846,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_36",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0028704000000000004,
+   "score": 0.39101068516995047,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_36",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000469,
+   "score": 0.23439450837947703,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_32",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035075000000000006,
+   "score": 0.4910309460428026,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_32",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003617,
+   "score": 0.49107714398318986,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_7",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0036547000000000003,
+   "score": 0.42074090350955345,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_7",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004547,
+   "score": 0.3431439055076493,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0027485000000000005,
+   "score": 0.24333278092322072,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_35",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0028934000000000004,
+   "score": 0.5236909816798554,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_35",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000461,
+   "score": 0.37847486465035934,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_6508",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006302,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6508",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000701,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_29",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0025047000000000003,
+   "score": 0.31973829655580116,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_29",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 9.5e-05,
+   "score": 0.3232761467357291,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_33",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0028451,
+   "score": 0.21038562712604056,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_33",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003313,
+   "score": 0.2189973293095663,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_20",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0034293,
+   "score": 0.3850105365117391,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_20",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004202,
+   "score": 0.3879324004575473,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_33",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0027531000000000005,
+   "score": 0.48736467170715336,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_33",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000411,
+   "score": 0.4402009276865506,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_150",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004209000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_150",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_4954",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004991,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4954",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.5e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_28",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0020355,
+   "score": 0.4048256996906165,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_28",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000379,
+   "score": 0.3848725210690329,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_45",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0038479000000000005,
+   "score": 0.2948335790733912,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_45",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004164,
+   "score": 0.2760336418333908,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_573",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005727,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_573",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.00091,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.00044620000000000006,
+   "score": 0.26548328369091717,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.21893869049247652,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2772",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006555,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2772",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000662,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0031096,
+   "score": 0.24734519066489244,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_31",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0019688000000000006,
+   "score": 0.4623066016605922,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_31",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000315,
+   "score": 0.3171159881604142,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_7",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0005543000000000001,
+   "score": 0.25787965846217537,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_7",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 2e-05,
+   "score": 0.08454426870645722,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_465",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0009545,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_465",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000144,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_4715",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006141000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4715",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.6e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_37",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.004434400000000001,
+   "score": 0.4845774639118183,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_37",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.005,
+   "score": 0.4985472306338224,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_12",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0028934000000000004,
+   "score": 0.32063507739981173,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_12",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.000276,
+   "score": 0.5240695277849833,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_61",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006279,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_61",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000105,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_46",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0016974000000000002,
+   "score": 0.34539366002176325,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_46",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.001826,
+   "score": 0.2841695889868506,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_34",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035903000000000007,
+   "score": 0.2775496175264743,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_34",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003712,
+   "score": 0.30557748742998003,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0032936000000000003,
+   "score": 0.2717280662695984,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0024909000000000003,
+   "score": 0.24350634516393385,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2973",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006187,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_2973",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000105,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_415",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007360000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_415",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0007130000000000001,
+   "score": 0.3217457680620699,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_18",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.21893869049247652,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_39",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0055131,
+   "score": 0.35669314399712815,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_39",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.00541,
+   "score": 0.3665663990607628,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_25",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0027600000000000007,
+   "score": 0.6523107939753039,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_25",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000458,
+   "score": 0.5457319768469788,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_17",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0023092,
+   "score": 0.5596312586812006,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_17",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000376,
+   "score": 0.5025773186614547,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_19",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0033626000000000003,
+   "score": 0.3153504443603566,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_19",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.003183,
+   "score": 0.30046606858571373,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_467",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008993000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_467",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_56",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035420000000000004,
+   "score": 0.30906523446960144,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_56",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004196,
+   "score": 0.31266248081531256,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_43",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.004411400000000001,
+   "score": 0.5418659723304443,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_43",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004403,
+   "score": 0.5521519776422029,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_14",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0036340000000000005,
+   "score": 0.49300930331451726,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_14",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000552,
+   "score": 0.4883320283245396,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0031809000000000004,
+   "score": 0.2298867982199785,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_219",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005405000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_219",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_859",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0004692000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_859",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 8.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0023276000000000004,
+   "score": 0.299398431538036,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_1",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.5329307065796606,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_10",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0007084000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_10",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0039652,
+   "score": 0.2278606367470631,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0032936000000000003,
+   "score": 0.26733833872881957,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_2",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.22338083959340627,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_27",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0030222000000000005,
+   "score": 0.39039856455165056,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_27",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000479,
+   "score": 0.4867746926642753,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_26",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.004312500000000001,
+   "score": 0.6234676221783242,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_26",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.00069,
+   "score": 0.5182280776264904,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_3537",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006670000000000001,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_3537",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_271",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005911000000000001,
+   "score": 0.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_271",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.1e-05,
+   "score": 0.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_51",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0035489,
+   "score": 0.3644757234405264,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_51",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000566,
+   "score": 0.4659910722895786,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_26",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0031027000000000008,
+   "score": 0.46707454476132226,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_26",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004199,
+   "score": 0.4622744168454444,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_479",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.00046,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_479",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.1e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_4208",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0011017,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4208",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_5147",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006003000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_5147",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000569,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_59",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035328000000000004,
+   "score": 0.2861789895706818,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_59",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003819,
+   "score": 0.2379653280762797,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_30",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0035696000000000005,
+   "score": 0.3461494893133046,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_30",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003213,
+   "score": 0.38550372801575006,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_36",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0027761000000000005,
+   "score": 0.56182594976016,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_36",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003245,
+   "score": 0.47173484525983295,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_1",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0016422000000000001,
+   "score": 0.2807417208688301,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_1",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.001956,
+   "score": 0.23774372220884823,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_40",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0042366,
+   "score": 0.40223698859979334,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_40",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003951,
+   "score": 0.3982784832622988,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_794",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008280000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_794",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.5e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_810",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005175000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_810",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.4e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_251",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0008602000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_251",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000569,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_28",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.005191100000000001,
+   "score": 0.2589020914749193,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_28",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.00438,
+   "score": 0.2684438346884234,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_32",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0014214000000000002,
+   "score": 0.5427027726784731,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_32",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.001449,
+   "score": 0.5860334038734436,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0032821000000000005,
+   "score": 0.2614233816962644,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3273948363463084,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_2",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0024219000000000003,
+   "score": 0.5079446060316903,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_2",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000351,
+   "score": 0.42886526717080004,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_498",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005014,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_498",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 6.7e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.003199300000000001,
+   "score": 0.2514078871310374,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_8",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0040319000000000015,
+   "score": 0.4924127119642134,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_8",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000584,
+   "score": 0.41609762862291816,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0030038,
+   "score": 0.23751494129008224,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3882972629241694,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_6",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0028382000000000004,
+   "score": 0.41415226564811736,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_6",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3343366382829583,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_23",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0023552000000000004,
+   "score": 0.39303082925779326,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_23",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000331,
+   "score": 0.4219243165774223,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_45",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0017434,
+   "score": 0.46660703629778144,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_45",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.001789,
+   "score": 0.5454290145251598,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0026749000000000005,
+   "score": 0.22731542246682301,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_72",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006624000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_72",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 7.2e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "sst2_630",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005796000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_630",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "summary_48",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0028359000000000006,
+   "score": 0.5785879687861996,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_48",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000466,
+   "score": 0.47882904325212755,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_553",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005888000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_553",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000593,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_334",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0006693000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "sst2_334",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000101,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "agnews_6775",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005083,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_6775",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_5",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0008855000000000001,
+   "score": 0.3999846403953664,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_5",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4166715578395319,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0032430000000000007,
+   "score": 0.23546203804383617,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_3",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3882972629241694,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_43",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0018607,
+   "score": 0.22462819171330284,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_43",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.001875,
+   "score": 0.3660576553571792,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_5636",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.00042780000000000004,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_5636",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000559,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_17",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0031234,
+   "score": 0.30318445559089063,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_17",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.26660535825964626,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_1029",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005129,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_1029",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 0.000101,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0028037000000000005,
+   "score": 0.23497144016840055,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_0",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.4107281696796417,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_29",
+   "kind": "support",
+   "route": "direct",
+   "cost_eur": 0.0038847,
+   "score": 0.30764337029465877,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "support_29",
+   "kind": "support",
+   "route": "cordon",
+   "cost_eur": 0.0,
+   "score": 0.3232761467357291,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4474",
+   "kind": "classification",
+   "route": "direct",
+   "cost_eur": 0.0005313000000000001,
+   "score": 1.0,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "agnews_4474",
+   "kind": "classification",
+   "route": "cordon",
+   "cost_eur": 3.9e-05,
+   "score": 1.0,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_51",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0031487000000000004,
+   "score": 0.2643472084496828,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_51",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.002733,
+   "score": 0.3467016617895664,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_24",
+   "kind": "summaries",
+   "route": "direct",
+   "cost_eur": 0.0021666000000000003,
+   "score": 0.4774093110811765,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "summary_24",
+   "kind": "summaries",
+   "route": "cordon",
+   "cost_eur": 0.000339,
+   "score": 0.44506806735224375,
+   "model": "gpt-4.1-mini"
+  },
+  {
+   "id": "chat_44",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0029578,
+   "score": 0.34361831949565796,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_44",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.003109,
+   "score": 0.24440408327794425,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_11",
+   "kind": "chat",
+   "route": "direct",
+   "cost_eur": 0.0036501000000000007,
+   "score": 0.3651719194904605,
+   "model": "gpt-4o"
+  },
+  {
+   "id": "chat_11",
+   "kind": "chat",
+   "route": "cordon",
+   "cost_eur": 0.004067,
+   "score": 0.28047254688945816,
+   "model": "gpt-4o"
+  }
+ ]
+}

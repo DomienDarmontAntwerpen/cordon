@@ -1,0 +1,16 @@
+# Routing table - written by `evaluation.benchmark --write-routing-table` (or --routing-table-from); do not edit by hand.
+# Written 2026-10-16 from answers_20261013T185113Z.jsonl, answers_20261013T185417Z.jsonl, answers_20261013T185609Z.jsonl, answers_20261013T202932Z.jsonl, answers_20261013T203614Z.jsonl, answers_20261013T204531Z.jsonl, answers_20261014T074746Z.jsonl, answers_20261014T074902Z.jsonl, answers_20261014T083933Z.jsonl, answers_20261014T084459Z.jsonl, answers_20261014T084726Z.jsonl, answers_20261014T084936Z.jsonl, answers_20261014T085825Z.jsonl, answers_20261014T090321Z.jsonl, answers_20261014T122426Z.jsonl, answers_20261014T125727Z.jsonl, answers_20261015T100111Z.jsonl, answers_20261015T152939Z.jsonl, answers_20261015T153719Z.jsonl, answers_20261015T162902Z.jsonl, answers_20261015T164338Z.jsonl, answers_20261015T171420Z.jsonl, answers_20261015T182603Z.jsonl, answers_20261015T183614Z.jsonl, answers_20261015T184616Z.jsonl, answers_20261015T185954Z.jsonl, answers_20261015T203527Z.jsonl, answers_20261015T204758Z.jsonl, answers_20261016T063411Z.jsonl, answers_20261016T065613Z.jsonl, answers_20261016T070358Z.jsonl, answers_20261016T071500Z.jsonl, answers_20261016T072735Z.jsonl (extended_golden_set.jsonl, extra_agnews_200.jsonl, extra_agnews_200_2.jsonl, extra_chats_200.jsonl, extra_general_confirm_200.jsonl, extra_gsm8k_200.jsonl, extra_gsm8k_plain_200_2.jsonl, extra_gsm8k_plain_200_3.jsonl, extra_gsm8k_plain_300_4.jsonl, extra_mbpp_train_120.jsonl, extra_sst2_200.jsonl, extra_summaries_200.jsonl, extra_summaries_confirm_200.jsonl).
+# Per (category, difficulty): the cheaper model that, together with its quality check at gate_threshold,
+# proved as good as the strong model (>= 30 questions; interval and exact loss-rate bound within the margin,
+# at 1 - 0.05 / (models x thresholds tried in the bucket), shown per route) and cheaper. A missing bucket
+# routes to the strong model.
+categories:
+  chat:
+    # gpt-4.1-mini + check at 0.5: 66.1% vs the strong model's 65.2% on 714 questions (99.38%: +0.000 to +0.020; a wrong or failed answer on at most 1.0%); 54% sent to the strong model; costs 70% of it - pass
+    easy: {model: gpt-4.1-mini, gate_threshold: 0.5, escalated: 0.538}
+  classification:
+    # gpt-4.1-mini + check at 0.5: 91.1% vs the strong model's 90.8% on 729 questions (99.58%: -0.015 to +0.019; a wrong or failed answer on at most 2.6%); 17% sent to the strong model; costs 33% of it - pass
+    easy: {model: gpt-4.1-mini, gate_threshold: 0.5, escalated: 0.166}
+  summarization:
+    # gpt-4.1-mini + check at 0.0: 46.5% vs the strong model's 46.0% on 365 questions (98.75%: -0.009 to +0.016; a wrong or failed answer on at most 1.2%); 1% sent to the strong model; costs 17% of it - pass
+    hard: {model: gpt-4.1-mini, gate_threshold: 0.0, escalated: 0.005}

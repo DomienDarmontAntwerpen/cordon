@@ -1,0 +1,215 @@
+<!--
+  Cordon's dashboard. A hand-built single page, no framework, CSP-compliant: no inline
+  scripts or styles (see security.DASHBOARD_CSP), every dynamic value is set
+  with textContent in dashboard.js, never innerHTML.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cordon — Dashboard</title>
+  <link rel="stylesheet" href="/dashboard-assets/dashboard.css" />
+</head>
+<body>
+  <!-- Section: connect screen — shown until a tenant or admin key is entered -->
+  <div id="connect-screen" class="connect-screen">
+    <div class="connect-card">
+      <h1 class="wordmark">Cordon</h1>
+      <p class="connect-hint">Enter a tenant or admin API key to view its dashboard. The key is kept in this browser tab only (sessionStorage) and is never written to disk.</p>
+      <form id="connect-form">
+        <input id="connect-key-input" type="password" autocomplete="off" placeholder="cdn_... (team key) or the admin key" />
+        <button type="submit">Connect</button>
+      </form>
+      <p id="connect-error" class="connect-error" hidden></p>
+    </div>
+  </div>
+
+  <!-- Section: app — the dashboard itself, hidden until a key is accepted -->
+  <div id="app" class="app" hidden>
+    <header class="app-header">
+      <div class="header-left">
+        <span class="wordmark">Cordon</span>
+        <select id="tenant-select" class="tenant-select" hidden></select>
+        <span id="mode-badge" class="mode-badge" hidden></span>
+      </div>
+      <div class="header-right">
+        <div class="segmented" id="period-select" role="group" aria-label="period">
+          <button type="button" data-period="24h" class="segmented-btn">24h</button>
+          <button type="button" data-period="7d" class="segmented-btn">7d</button>
+          <button type="button" data-period="30d" class="segmented-btn">30d</button>
+        </div>
+        <span id="last-updated" class="last-updated"></span>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="toggle theme">Theme</button>
+        <button id="lock-btn" type="button" class="icon-btn" aria-label="lock">Lock</button>
+      </div>
+    </header>
+
+    <nav class="tab-bar" role="tablist" aria-label="dashboard sections">
+      <button type="button" class="tab active" data-tab-target="overview">Overview</button>
+      <button type="button" class="tab" data-tab-target="try">Try a request</button>
+      <button type="button" class="tab" data-tab-target="teams">Teams &amp; budget</button>
+      <button type="button" class="tab" data-tab-target="security">Security</button>
+      <button type="button" class="tab" data-tab-target="requests">Requests</button>
+    </nav>
+    <main class="main">
+      <!-- Section: mode explanation — what observe/enforce means for the team being viewed -->
+      <p id="mode-note" class="mode-note" hidden></p>
+
+      <!-- Section: try a request — send a prompt through Cordon and see what it did -->
+      <section data-tab="try" class="card">
+        <h2 class="card-title">Try a request</h2>
+        <p class="card-hint">Sent through Cordon like any app's request: see what was masked, which model answered, and what it cost against going straight to the strong model.</p>
+        <form id="try-form" class="try-form">
+          <input id="try-key" type="password" autocomplete="off" placeholder="Team key (cdn_...) - filled in when you connect with one" />
+          <textarea id="try-prompt" rows="3">Classify the sentiment of this review as positive or negative: "A warm, funny film." Mail me at jan.peeters@example.com</textarea>
+          <button type="submit" id="try-send">Send</button>
+        </form>
+        <div id="try-result" class="try-result" hidden>
+          <dl id="try-facts" class="try-facts"></dl>
+          <p class="card-hint">Answer</p>
+          <pre id="try-answer" class="try-answer"></pre>
+          <div id="try-saving" class="try-saving" hidden>
+            <span id="try-saving-big" class="try-saving-big"></span>
+            <span id="try-saving-detail" class="try-saving-detail"></span>
+          </div>
+          <div id="try-stats" class="try-stats" hidden></div>
+        </div>
+        <p id="try-error" class="connect-error" hidden></p>
+      </section>
+
+      <!-- Section: team settings — admin key, one team selected: switch the mode and each feature -->
+      <section data-tab="teams" id="settings-card" class="card" hidden>
+        <h2 class="card-title">Team settings</h2>
+        <p class="card-hint">Start in observe. Switch to enforce when the numbers convince, then turn features on one at a time. Every change applies to the next request and is written to the admin log.</p>
+        <div class="settings-row">
+          <span class="settings-label">Mode</span>
+          <div class="segmented" id="mode-switch" role="group" aria-label="mode">
+            <button type="button" data-mode="observe" class="segmented-btn">Observe</button>
+            <button type="button" data-mode="enforce" class="segmented-btn">Enforce</button>
+          </div>
+        </div>
+        <ul id="feature-list" class="feature-list"></ul>
+        <p id="settings-status" class="settings-status" hidden></p>
+      </section>
+
+      <!-- Section: teams overview — admin key, "All teams" only -->
+      <section data-tab="teams" id="teams-card" class="card" hidden>
+        <h2 class="card-title">Teams</h2>
+        <p class="card-hint">One row per team. Observe = Cordon only measures; enforce = Cordon acts. Click a team to see its details.</p>
+        <div class="table-wrap">
+          <table class="requests-table">
+            <thead>
+              <tr>
+                <th>Team</th><th>Mode</th><th>Features on</th><th>Requests</th><th>Blocked</th>
+                <th>Cost</th><th>Saved</th><th>Could still save</th>
+              </tr>
+            </thead>
+            <tbody id="teams-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section: alerts — anything unusual, first -->
+      <section data-tab="overview" class="card">
+        <h2 class="card-title">Alerts</h2>
+        <p class="card-hint">Anything unusual in this period: budgets running out, sudden cost spikes, agents stuck in a loop, attacks, internal failures.</p>
+        <ul id="alerts-list" class="alerts-list"></ul>
+      </section>
+
+      <!-- Section: KPI row -->
+      <section data-tab="overview" id="kpi-row" class="kpi-row"></section>
+
+      <!-- Section: charts -->
+      <section data-tab="overview" class="charts-grid">
+        <div class="card chart-card">
+          <h2 class="card-title">Cost over time</h2>
+          <p class="card-hint">What was paid, next to what it would have cost without Cordon.</p>
+          <div class="chart-wrap"><canvas id="chart-cost-over-time"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h2 class="card-title">Savings per technique</h2>
+          <p class="card-hint">Saved = really saved. Could save = found in observe mode, not applied yet.</p>
+          <div class="chart-wrap"><canvas id="chart-savings-technique"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h2 id="money-title" class="card-title">Where the money goes</h2>
+          <p id="money-hint" class="card-hint">Cost per team.</p>
+          <div class="chart-wrap"><canvas id="chart-where-money-goes"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h2 class="card-title">Models used</h2>
+          <p class="card-hint">Which model answered. Routing moves easy requests to cheaper models.</p>
+          <div class="chart-wrap"><canvas id="chart-routing-split"></canvas></div>
+        </div>
+      </section>
+
+      <!-- Section: most expensive requests -->
+      <section data-tab="requests" class="card">
+        <h2 class="card-title">Most expensive requests</h2>
+        <p class="card-hint">The ten costliest requests in this period. Cordon never stores prompt text, so a request is identified by its team, tags and size.</p>
+        <div class="table-wrap">
+          <table class="requests-table">
+            <thead>
+              <tr><th>Time</th><th>Team</th><th>Tags</th><th>Model</th><th>Tokens in</th><th>Tokens out</th><th>Cost</th></tr>
+            </thead>
+            <tbody id="top-requests-body"></tbody>
+          </table>
+          <p id="top-requests-empty" class="empty-state" hidden>No answered requests in this period yet.</p>
+        </div>
+      </section>
+
+      <!-- Section: security & privacy panel -->
+      <section data-tab="security" class="card">
+        <h2 class="card-title">Security &amp; privacy</h2>
+        <p class="card-hint">Personal data hidden from the AI provider, attacks caught, and every request that was refused.</p>
+        <div class="security-grid">
+          <div>
+            <h3 class="panel-subtitle">Input PII masked/blocked</h3>
+            <ul id="security-input-pii" class="stat-list"></ul>
+          </div>
+          <div>
+            <h3 class="panel-subtitle">Output PII redacted/blocked</h3>
+            <ul id="security-output-pii" class="stat-list"></ul>
+          </div>
+          <div>
+            <h3 class="panel-subtitle">Injections &amp; leaks</h3>
+            <ul id="security-injections" class="stat-list"></ul>
+          </div>
+          <div>
+            <h3 class="panel-subtitle">Blocked requests by reason</h3>
+            <ul id="security-blocked" class="stat-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: budget card -->
+      <section data-tab="teams" class="card">
+        <h2 class="card-title">Budget</h2>
+        <div id="budget-card" class="budget-card"></div>
+      </section>
+
+      <!-- Section: recent requests table -->
+      <section data-tab="requests" class="card">
+        <h2 class="card-title">Recent requests</h2>
+        <p class="card-hint">The last 50 requests, newest first.</p>
+        <div class="table-wrap">
+          <table class="requests-table">
+            <thead>
+              <tr>
+                <th>Time</th><th>Team</th><th>Mode</th><th>Tags</th><th>Model</th><th>Cache</th>
+                <th>Cost</th><th>Baseline</th><th>Quality</th><th>Guardrails</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="requests-table-body"></tbody>
+          </table>
+          <p id="requests-empty" class="empty-state" hidden>No requests in this period yet.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/dashboard-assets/chart.umd.min.js"></script>
+  <script src="/dashboard-assets/dashboard.js"></script>
+</body>
+</html>

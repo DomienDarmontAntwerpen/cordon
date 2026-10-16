@@ -1,0 +1,66 @@
+# failsafe.conf.template - the failsafe in front of Cordon (nginx).
+#
+# The client's apps talk to this failsafe, not to Cordon directly. Every
+# request goes to Cordon. Only when nginx gets no answer from Cordon at all -
+# no connection, Cordon's container gone, the connection dropped mid-request,
+# or no reply within proxy_read_timeout - does *that one request* go straight
+# to the provider with the client's own key, so the apps keep working.
+#
+# Any answer Cordon gives - a refusal (blocked prompt injection, budget cap)
+# or one of its own errors - goes back to the app unchanged. That is what
+# `proxy_intercept_errors off` guarantees: error_page below only ever sees
+# errors nginx produced itself because Cordon did not answer.
+#
+# The trade-off, to agree with the client's IT: a request sent direct is not
+# protected by Cordon (no masking, no limits, no ledger row). Each one is
+# marked with the response header X-Cordon-Failsafe: direct and logged in this
+# container's access log. The direct path only takes chat requests carrying a
+# Cordon team key (cdn_...); it cannot check whether the key was revoked -
+# Cordon is down. Keep the failsafe reachable from the client's network only.
+#
+# The official nginx image fills in ${...} from the environment at startup
+# (only variables that are set; nginx's own $variables are left alone).
+
+# Docker's own DNS, so Cordon's address is looked up per request: the
+# failsafe starts and keeps working while the Cordon container is gone.
+resolver 127.0.0.11 valid=5s ipv6=off;
+resolver_timeout 2s;
+
+server {
+    listen 8080;
+    client_max_body_size 20m;  # Cordon's own request_limits.max_body_bytes
+
+    location / {
+        set $cordon http://cordon:8787;  # a variable: resolved per request, never cached at startup
+        proxy_pass $cordon;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_connect_timeout 2s;
+        proxy_read_timeout 300s;
+        proxy_buffering off;           # stream answers chunk by chunk
+        proxy_next_upstream off;       # never send one request to Cordon twice
+        proxy_intercept_errors off;    # Cordon's own answers are never replaced
+        error_page 502 504 = @direct;  # only nginx's own "Cordon did not answer" errors
+    }
+
+    # The direct path: the provider, with the client's own key.
+    location @direct {
+        if ($uri != "/v1/chat/completions") {
+            return 503;
+        }
+        if ($http_authorization !~ "^Bearer cdn_") {
+            return 401;
+        }
+        set $direct ${FAILSAFE_DIRECT_URL};  # a variable: looked up per request, so a DNS hiccup at startup never stops nginx
+        proxy_pass $direct;
+        proxy_ssl_server_name on;
+        proxy_set_header Host ${FAILSAFE_DIRECT_HOST};
+        proxy_set_header Authorization "Bearer ${OPENAI_API_KEY}";
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_read_timeout 300s;
+        proxy_buffering off;
+        add_header X-Cordon-Failsafe "direct" always;
+    }
+}

@@ -1,0 +1,50 @@
+# .github/workflows/ci.yml — runs tools/ci.sh, the single source of truth
+# for "CI green" (see that script's own header comment for the exact steps).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: ./tools/ci.sh
+
+  docker:
+    # Builds the image and checks that it starts and answers /health - the
+    # one thing the local CI script cannot verify without a Docker daemon.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t cordon:ci .
+      - name: Start the container (mock mode, read-only, as in docker-compose.yml)
+        run: |
+          mkdir -p ci-data && sudo chown 10001 ci-data   # the container runs as uid 10001 and writes its database here
+          docker run -d --name cordon --read-only --tmpfs /tmp -v "$PWD/ci-data:/app/data" \
+            -e MOCK_MODE=true -e CORDON_BIND=0.0.0.0 -p 8787:8787 cordon:ci
+      - name: Wait for /health
+        run: |
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:8787/health; then exit 0; fi
+            sleep 2
+          done
+          docker logs cordon
+          exit 1
+
+  failsafe:
+    # Runs the real nginx failsafe between two stand-ins and checks that the apps
+    # keep working when Cordon is down (see evaluation/failsafe_check.py).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install httpx==0.28.1
+      - run: python -m evaluation.failsafe_check

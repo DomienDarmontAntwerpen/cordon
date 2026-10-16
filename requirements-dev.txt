@@ -1,0 +1,12 @@
+# Development-only dependencies: the analysis notebooks in notebooks/ and
+# tools/dashboard_demo.py --screenshot (which drives the installed Google Chrome).
+# Never needed to run Cordon itself, so they are not in requirements.txt
+# (and not in the Docker image). Install with:
+#   .venv/bin/pip install -r requirements-dev.txt
+pandas==3.0.6
+pyarrow==26.0.0
+matplotlib==3.11.2
+nbformat==5.11.1
+nbconvert==7.17.2
+ipykernel==7.4.0
+playwright==1.56.0
