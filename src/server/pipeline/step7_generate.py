@@ -49,6 +49,7 @@ def run(ctx: RequestContext, services: Services) -> JSONResponse | None:
     ctx.usage = response.usage
     ctx.answer_text = response.choices[0].message.content or ""
     ctx.answer_tool_calls = response.choices[0].message.tool_calls
+    ctx.answer_finish_reason = response.choices[0].finish_reason or "stop"
     ctx.answer_confidence = quality.answer_confidence(response)
     if services.settings.mock_mode and ctx.answer_confidence is None and ctx.served_alias in ctx.confidence_models:
         ctx.answer_confidence = mock.mock_confidence(ctx)

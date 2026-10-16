@@ -3,6 +3,7 @@ src/savings/routing.py: request classification, candidate models, the ladder, es
 
 Run: .venv/bin/python -m pytest tests/test_routing.py -v
 """
+import pytest
 
 
 
@@ -147,3 +148,31 @@ def test_a_chat_turn_with_earlier_replies_is_a_conversation():
     assert routing.classify_request([{"role": "user", "content": "Where is my order?"}], None)[0] == "chat"
     assert routing.classify_request(history + [{"role": "user", "content": "Where is my order?"}], None)[0] == "conversation"
     assert routing.classify_request(history + [{"role": "user", "content": "Classify this as spam or not: win now"}], None)[0] == "classification"
+
+
+_HISTORY = [{"role": "user", "content": "I ordered a jacket last week."}, {"role": "assistant", "content": "It ships today."}]
+
+
+@pytest.mark.parametrize("messages", [
+    # earlier arithmetic: the follow-up is arithmetic too, which no cheaper model is proven on
+    [{"role": "user", "content": "Tom has 12 apples and gives 5 away."}, {"role": "assistant", "content": "7 are left."},
+     {"role": "user", "content": "And if he then buys 3 bags of 4 apples each, what is his total now?"}],
+    [{"role": "user", "content": "Tom has 12 apples and gives 5 away. How many are left?"},
+     {"role": "assistant", "content": "7."}, {"role": "user", "content": "And if he then buys 3 bags of 4 apples each?"}],
+    # instructions (a coding assistant), tools, attachments and long contexts were never in the evidence
+    [{"role": "system", "content": "You are a Python coding assistant."}, *_HISTORY, {"role": "user", "content": "Can you change it?"}],
+    [{"role": "user", "content": "What is the weather in Ghent?"},
+     {"role": "assistant", "content": None, "tool_calls": [{"id": "c1", "type": "function", "function": {"name": "weather", "arguments": "{}"}}]},
+     {"role": "tool", "tool_call_id": "c1", "content": "{\"temp\": 14}"}],
+    [{"role": "user", "content": [{"type": "text", "text": "What is in this picture?"},
+                                  {"type": "image_url", "image_url": {"url": "https://example.com/a.png"}}]},
+     {"role": "assistant", "content": "A dog."}, {"role": "user", "content": "What breed is it?"}],
+    [{"role": "user", "content": "Here is our contract. " * 300}, {"role": "assistant", "content": "Noted."},
+     {"role": "user", "content": "Can I cancel it?"}],
+])
+def test_only_the_proven_shape_of_conversation_takes_its_route(messages):
+    """A conversation is plain user/assistant text within the evidence's size, with chat questions only."""
+    from src.savings import routing
+
+    assert routing.classify_request(messages, None)[0] != "conversation"
+    assert routing.classify_request(_HISTORY + [{"role": "user", "content": "Can I change the address?"}], None)[0] == "conversation"

@@ -36,10 +36,11 @@ To see what Cordon saves on a company's bill, we **simulated one working day**: 
 from real, public data - texts to classify, customer-support questions (popular ones asked again
 and again), support chats sent with their history, news articles to summarize. Every request was
 sent **live to OpenAI twice**: straight to gpt-4o, as a company pays today, and through Cordon with
-its savings on. The costs are **what OpenAI really billed**; every answer was scored the same way
-(the known label, or the dataset's reference answer).
+its savings on. The costs are **OpenAI's prices for the tokens it really billed**. Classifications are scored by their
+known label; the other answers by closeness to the dataset's reference answer (ROUGE-L plus an LLM
+judge, gpt-4o itself), on a 0-1 scale of closeness - not a share of correct answers.
 
-| Kind of request | Share of the bill | Saved | Quality (straight / Cordon) | How |
+| Kind of request | Share of the bill | Saved | Quality 0-1 (straight / Cordon) | How |
 |---|---|---|---|---|
 | Chats with history | 34% | 86% | 0.37 / 0.45 | gpt-4.1-mini, proven on 375 conversations (197 from a fresh round fixed in advance) |
 | Support questions | 30% | 78% | 0.30 / 0.29 | repeats come from the cache; the rest from a cheaper model |
@@ -47,20 +48,13 @@ its savings on. The costs are **what OpenAI really billed**; every answer was sc
 | Classifying texts | 10% | 72% | 0.93 / 0.95 | gpt-4.1-mini, proven as good on 729 questions |
 | **Whole day** | | **80%** | no measurable loss over the day | EUR 0.64 straight vs EUR 0.13 through Cordon |
 
-- It is one composed day, not a real company's traffic: a company saves more with many repeated
-  questions, summaries or classifications, less with mostly long chats. `tools/audit.py` estimates
-  it from a company's own logs.
-- Quality scores have their own scale per kind (right/wrong for classification, closeness to a
-  reference answer for the rest). Per kind, 60-100 requests are too few to prove a difference
-  either way, and the figures move a few points between runs.
-- The chats are support conversations stitched from a public dataset; gpt-4.1-mini's replies are
-  closer to its reference answers than gpt-4o's. On a company's own chats the gap may be smaller.
-- A cheaper model is used only where it was proven as good on hundreds of real questions, and each
-  route was confirmed on fresh questions fixed in advance. Requests recognised as arithmetic or
-  code stay on gpt-4o. How every number was measured, and what it does *not* show:
+- One composed day, not a real company's traffic: more repeats, summaries or classifications save
+  more, long open-ended work less. `tools/audit.py` estimates it from a company's own logs.
+- Per kind, 60-100 requests are too few to prove a difference either way. The chats are support
+  conversations stitched from a public dataset; that gpt-4.1-mini scores *higher* there means its
+  replies are closer to the dataset's reference answers, not that it is a better model.
+- Arithmetic and code stay on gpt-4o. How each number was measured, and what it does *not* show:
   [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). Repeat it: `python -m evaluation.company_day`.
-- Answers are judged by an LLM (gpt-4o itself, which if anything favours its own answers); costs
-  are OpenAI's list prices applied to the billed tokens.
 
 ## What I decided
 
@@ -159,7 +153,7 @@ Also: [SECURITY.md](SECURITY.md) (threat model, data handling) and [reports/mode
 
 ## Status & next steps
 
-A working, tested prototype; every number above was measured live on OpenAI (about EUR 10 in total) and can be repeated (`evaluation/company_day.py`). How each was measured, and what it does *not* show: [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). In progress, each measured before it is switched on: a route for arithmetic (asked plainly, gpt-4o-mini comes close: 95% vs 97%), shorter chat histories, a batch mode for work that can wait - and a pilot on a company's own traffic, the real test of any route.
+A working, tested prototype; every saving and quality number above was measured live on OpenAI (about EUR 10 in total; the dashboard overview shows mock traffic) and can be repeated (`evaluation/company_day.py`). How each was measured, and what it does *not* show: [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). In progress, each measured before it is switched on: a route for arithmetic (asked plainly, gpt-4o-mini comes close: 95% vs 97%), shorter chat histories, a batch mode for work that can wait - and a pilot on a company's own traffic, the real test of any route.
 
 Reviewed in rounds by AI review agents (software and security, ML evaluation, a recruiter and a client's CTO); every confirmed bug has a regression test that fails without the fix.
 

@@ -246,6 +246,7 @@ h1, h2, h3 { margin: 0; }
   white-space: nowrap;
 }
 .requests-table td { padding: 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.requests-table td.wrap-cell { white-space: normal; min-width: 200px; max-width: 340px; }
 .requests-table tbody tr:last-child td { border-bottom: none; }
 .status-pill { display: inline-block; border-radius: 999px; padding: 2px 8px; font-size: 12px; font-weight: 600; }
 .status-pill.status-ok { background: var(--accent-bg); color: var(--accent); }

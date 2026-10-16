@@ -91,6 +91,7 @@ class RequestContext:
     usage: Any = None
     answer_text: str = ""
     answer_tool_calls: Any = None
+    answer_finish_reason: str = "stop"  # the provider's: "length" means the answer was cut off
     answer_confidence: dict | None = None  # quality.answer_confidence() of the answer (None without logprobs)
     tokens_in: int | None = None
     tokens_out: int | None = None

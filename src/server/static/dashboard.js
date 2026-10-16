@@ -386,11 +386,15 @@ const FEATURES = [
   ["trim", "Shorter prompts", "Removes duplicate text, old conversation turns and oversized tool output."],
   ["vision", "Smaller images", "Downscales images to what the model actually needs."],
   ["cache", "Cache (same question)", "Answers an identical question again for free."],
-  ["semantic_cache", "Cache (similar question)", "Also answers similar questions from the cache. Off by default: about 1-4% of its hits are wrong."],
+  ["semantic_cache", "Cache (similar question)", "Also answers similar questions from the cache. Off by default: about 1-5% of its hits are wrong."],
   ["routing", "Cheaper model", "Sends a request to a cheaper model where the benchmark proved it, with its check: an answer the check doubts goes to the strong model."],
   ["max_tokens", "Answer length limit", "Caps answers that set no length of their own."],
   ["circuit_breaker", "Agent loop stop", "Stops an agent that keeps asking almost the same question."],
 ];
+
+function featureLabel(name) {
+  return (FEATURES.find(([key]) => key === name) || [name, name])[1];
+}
 
 function renderSettingsCard() {
   const team = state.isAdmin ? teamById(state.tenantId) : null;
@@ -487,7 +491,9 @@ function renderTeamsTable(rows) {
     tr.className = "clickable-row";
     tr.appendChild(cell(team.name));
     tr.appendChild(modeSwitchCell(team));
-    tr.appendChild(cell((team.settings.features || []).join(", ") || "none"));
+    const features = cell((team.settings.features || []).map(featureLabel).join(", ") || "none");
+    features.className = "wrap-cell";  // a long feature list wraps instead of pushing the numbers off-screen
+    tr.appendChild(features);
     tr.appendChild(cell(String(k.requests)));
     tr.appendChild(cell(String(k.blocked)));
     tr.appendChild(cell(formatEur(k.actual)));
@@ -572,6 +578,7 @@ function getOrCreateChart(id, config) {
     return state.charts[id];
   }
   const canvas = document.getElementById(id);
+  Chart.defaults.locale = "en-US";  // the same number format as the rest of the page (0.016, not 0,016)
   state.charts[id] = new Chart(canvas, config);
   return state.charts[id];
 }

@@ -542,3 +542,34 @@ def test_the_response_names_the_kind_of_request(client, admin_headers):
     conversation = client.post("/v1/chat/completions", headers=headers, json={"model": "gpt-4o", "messages": history + [question]})
     assert single.headers["X-Cordon-Kind"] == "chat/easy"
     assert conversation.headers["X-Cordon-Kind"] == "conversation/easy"
+
+
+def test_an_answer_the_provider_cut_off_is_sent_on_and_reported(client, admin_headers, proven_extraction_route, monkeypatch):
+    """finish_reason "length" fails the check even when the text looks complete, and reaches the caller unchanged."""
+    import litellm as litellm_module
+
+    real = litellm_module.completion
+
+    def cut_off_when_cheap(**kwargs):
+        """The cheaper model hits its token limit on a sentence that happens to end with a full stop."""
+        response = real(**kwargs)
+        if kwargs["model"] != "openai/gpt-4o":
+            response.choices[0].finish_reason = "length"
+        return response
+
+    monkeypatch.setattr(litellm_module, "completion", cut_off_when_cheap)
+    headers = team(client, admin_headers, features=["routing"], strong="gpt-4o")
+    body = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Please extract the following fields: name, date, amount."}]}
+    resp = client.post("/v1/chat/completions", headers=headers, json=body)
+    assert resp.headers["X-Cordon-Check"] == "empty_or_truncated" and resp.headers["X-Cordon-Route"] == "gpt-4o"
+    assert resp.json()["choices"][0]["finish_reason"] == "stop"  # the strong model's own finish_reason
+
+    def always_cut_off(**kwargs):
+        """Every model hits its token limit: an unrouted request passes that on to the caller."""
+        response = real(**kwargs)
+        response.choices[0].finish_reason = "length"
+        return response
+
+    monkeypatch.setattr(litellm_module, "completion", always_cut_off)
+    capped = client.post("/v1/chat/completions", headers=team(client, admin_headers, features=[]), json=body)
+    assert capped.json()["choices"][0]["finish_reason"] == "length"

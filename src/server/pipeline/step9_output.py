@@ -116,7 +116,7 @@ def finish(ctx: RequestContext, services: Services) -> JSONResponse:
                     "content": ctx.restored_message["content"],
                     "tool_calls": ctx.restored_message.get("tool_calls"),
                 },
-                "finish_reason": "stop",
+                "finish_reason": ctx.answer_finish_reason,
             }
         ],
         "usage": {"prompt_tokens": ctx.tokens_in, "completion_tokens": ctx.tokens_out, "total_tokens": ctx.tokens_in + ctx.tokens_out},

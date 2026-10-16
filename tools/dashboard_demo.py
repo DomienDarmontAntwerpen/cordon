@@ -75,7 +75,7 @@ def customer_service_traffic(client: httpx.Client, headers: dict, rng: random.Ra
 def send_traffic(client: httpx.Client) -> None:
     """Create the three teams and send their traffic."""
     rng = random.Random(42)
-    support = create_team(client, "Customer service", mode="enforce", features=["cache", "trim"],
+    support = create_team(client, "Customer service", mode="enforce", features=["cache", "trim", "routing"],
                           injection_action="block", budget_daily_eur=5.0)
     docs = create_team(client, "Document assistant", mode="enforce", features=["trim", "cache"], budget_daily_eur=0.25)
     sales = create_team(client, "Sales assistant", mode="observe", features=["cache", "trim"])

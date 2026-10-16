@@ -32,7 +32,7 @@ def run(ctx: RequestContext, services: Services) -> JSONResponse | None:
         try:
             verdict = quality.gate_verdict(ctx.last_user_text_masked, ctx.answer_text, services.config,
                                            ctx.route.gate_threshold, ctx.completion_kwargs.get("response_format"),
-                                           confidence=ctx.answer_confidence)
+                                           confidence=ctx.answer_confidence, finish_reason=ctx.answer_finish_reason)
         except Exception:
             logger.warning("quality check failed: asking the strong model", exc_info=True)
             verdict = quality.GateVerdict(True, 0.0, "error")
@@ -67,6 +67,7 @@ def _escalate_to_strong(ctx: RequestContext, services: Services) -> JSONResponse
     ctx.total_actual_eur += costing.actual_cost_eur(answered.litellm_name, usage.prompt_tokens, usage.completion_tokens,
                                                     services.config)
     ctx.answer_text, ctx.answer_tool_calls, ctx.usage = text, response.choices[0].message.tool_calls, usage
+    ctx.answer_finish_reason = response.choices[0].finish_reason or "stop"
     ctx.served_alias, ctx.served_litellm_name, ctx.fallback_occurred = answered.alias, answered.litellm_name, True
     # Both models were paid for: the request cost more than the strong model alone, so nothing was saved.
     ctx.savings.pop("routing", None)

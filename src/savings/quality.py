@@ -303,17 +303,17 @@ def load_classifier(model_path: str, expected_sha256: str):
 _NON_ANSWER_REGEX = re.compile(r"^\W*(n/?a|none|null|unknown|i don'?t know|no answer|-+|\?+)\W*$", re.IGNORECASE)
 
 
-def obvious_failure(answer: str, response_format: dict | None = None) -> str | None:
+def obvious_failure(answer: str, response_format: dict | None = None, finish_reason: str | None = None) -> str | None:
     """
     The first layer of the gate: an unmistakably bad answer, named - or None.
 
-    Empty or cut off, a non-answer ("N/A", "unknown"), a refusal, an error or stack trace, or
+    Empty or cut off (by its look, or the provider says so), a non-answer ("N/A", "unknown"), a refusal, an error or stack trace, or
     JSON that breaks the requested schema. These are rules, not learned: real models rarely produce them, so a model
     trained on real answers never sees enough of them to learn them.
     """
     if not validate_structured_output(answer, response_format):
         return "invalid_json"
-    if _is_empty_or_truncated(answer):
+    if finish_reason == "length" or _is_empty_or_truncated(answer):  # the provider says it was cut off
         return "empty_or_truncated"
     if _NON_ANSWER_REGEX.match(answer.strip()):
         return "non_answer"
@@ -334,7 +334,7 @@ class GateVerdict:
 
 
 def gate_verdict(question: str, answer: str, config: dict, threshold: float, response_format: dict | None = None,
-                 confidence: dict | None = None) -> GateVerdict:
+                 confidence: dict | None = None, finish_reason: str | None = None) -> GateVerdict:
     """
     Decide whether a cheaper model's answer goes to the strong model after all.
 
@@ -344,7 +344,7 @@ def gate_verdict(question: str, answer: str, config: dict, threshold: float, res
     reach the route's threshold; an answer without the model's confidence cannot be checked,
     so it goes to the strong model - the route was only proven with the check.
     """
-    failure = obvious_failure(answer, response_format)
+    failure = obvious_failure(answer, response_format, finish_reason)
     if failure:
         return GateVerdict(True, 0.0, failure)
     if threshold <= 0:

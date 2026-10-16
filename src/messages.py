@@ -104,6 +104,21 @@ def instructions_text(messages: list[dict]) -> str | None:
     return joined or None
 
 
+def is_plain_conversation(messages: list[dict], max_messages: int, max_words: int) -> bool:
+    """
+    True for a plain chat conversation: user and assistant text turns only (no instructions, tools
+    or attachments), at least one earlier assistant reply, ending on the user's turn, and within
+    max_messages and max_words.
+    """
+    if not messages or len(messages) > max_messages or messages[-1].get("role") != "user":
+        return False
+    if not any(m.get("role") == "assistant" for m in messages[:-1]):
+        return False
+    if any(m.get("role") not in ("user", "assistant") or m.get("tool_calls") or not is_text_only(m) for m in messages):
+        return False
+    return sum(len(message_text(m.get("content")).split()) for m in messages) <= max_words
+
+
 def is_text_only(message: dict) -> bool:
     """True if the message carries no image, file, audio or other non-text part."""
     content = message.get("content")

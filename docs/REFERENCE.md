@@ -149,6 +149,7 @@ cordon/
 | `benchmark.py` | Compares answer quality and cost with and without Cordon; collects labelled answers from one model (`--collect`). |
 | `company_day.py` | A realistic working day of requests, sent live straight to gpt-4o and through Cordon: the real cost and quality of both; also writes the chat, summary and confirmation rounds. |
 | `route_proof.py` | Proves a route: a cheaper model *with its quality check* against the strong model, per kind of request; writes the routing table. |
+| `pairwise_judge.py` | A blind check of one route: a judge sees two replies (in both orders, models hidden) and picks the more helpful one. |
 | `train.py` | Trains the quality check on real labelled answers (never on route-evidence questions) and writes the model card. |
 | `gate_eval.py` | The check's evaluation: metrics, candidates (incl. an MLP, a fine-tuned transformer, an LLM judge). |
 | `fetch_eval_sets.py` | Public questions with known answers (GSM8K, SST-2, MBPP, AG News): the evaluation set, the training set and extra rounds, never overlapping. |

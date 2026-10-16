@@ -79,17 +79,7 @@ def classify_request(messages: list[dict], response_format: dict | None) -> tupl
     # Only the user's question decides: a system prompt that says "summarize" or
     # "you must..." would otherwise turn every request into summarization/hard.
     text = messages_module.last_user_text(messages).lower()
-    has_code_block = bool(_CODE_BLOCK_REGEX.search(text))
-
-    category = "chat"
-    if response_format and response_format.get("type") in ("json_schema", "json_object"):
-        category = "extraction"
-    for candidate_category, keywords in _CATEGORY_KEYWORDS.items():
-        if any(keyword in text for keyword in keywords):
-            category = candidate_category
-            break
-    if has_code_block or _CODE_REQUEST_REGEX.search(text):
-        category = "code"
+    category = _category(text, response_format)
 
     word_count = len(text.split())
     multistep_count = sum(1 for word in _MULTISTEP_WORDS if word in text)
@@ -107,11 +97,39 @@ def classify_request(messages: list[dict], response_format: dict | None) -> tupl
     elif category == "reasoning" and multistep_count >= 1:
         difficulty = "hard"
 
-    # A chat turn that continues a conversation (earlier assistant replies are sent along) is its own
-    # kind: models are measured separately on it, apart from one-off questions such as arithmetic.
-    if category == "chat" and any(m.get("role") == "assistant" for m in messages[:-1]):
+    if category == "chat" and _is_chat_conversation(messages):
         category = "conversation"
     return category, difficulty
+
+
+def _category(text: str, response_format: dict | None) -> str:
+    """The kind of request one user text asks for (lower-cased text)."""
+    category = "chat"
+    if response_format and response_format.get("type") in ("json_schema", "json_object"):
+        category = "extraction"
+    for candidate_category, keywords in _CATEGORY_KEYWORDS.items():
+        if any(keyword in text for keyword in keywords):
+            category = candidate_category
+            break
+    if _CODE_BLOCK_REGEX.search(text) or _CODE_REQUEST_REGEX.search(text):
+        category = "code"
+    return category
+
+
+# The shape the conversation route was proven on (evaluation/company_day.py): four earlier support
+# turns, user and assistant text only, 99% of them under 800 words, no user turn with two or more
+# numbers (arithmetic-shaped). Anything else stays "chat".
+_CONVERSATION_MAX_MESSAGES = 9
+_CONVERSATION_MAX_WORDS = 1000
+_NUMBER_REGEX = re.compile(r"\d+(?:[.,]\d+)?")
+
+
+def _is_chat_conversation(messages: list[dict]) -> bool:
+    """A plain conversation in which every user turn is a chat question (no code, no arithmetic)."""
+    if not messages_module.is_plain_conversation(messages, _CONVERSATION_MAX_MESSAGES, _CONVERSATION_MAX_WORDS):
+        return False
+    user_texts = [messages_module.message_text(m.get("content")).lower() for m in messages if m.get("role") == "user"]
+    return all(_category(text, None) == "chat" and len(_NUMBER_REGEX.findall(text)) < 2 for text in user_texts)
 
 
 # --- Section: candidate selection — enabled, allowed, capable pool models, plus strong ---
