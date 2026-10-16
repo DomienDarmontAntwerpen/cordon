@@ -42,7 +42,7 @@ judge, gpt-4o itself), on a 0-1 scale of closeness - not a share of correct answ
 
 | Kind of request | Share of the bill | Saved | Quality 0-1 (straight / Cordon) | How |
 |---|---|---|---|---|
-| Chats with history | 34% | 86% | 0.37 / 0.45 | gpt-4.1-mini, proven on 375 conversations (197 from a fresh round fixed in advance) |
+| Chats with history | 34% | 86% | 0.37 / 0.45 | gpt-4.1-mini, proven on 367 conversations and in a blind check on 193 fresh ones |
 | Support questions | 30% | 78% | 0.30 / 0.29 | repeats come from the cache; the rest from a cheaper model |
 | Summaries | 26% | 75% | 0.46 / 0.46 | gpt-4.1-mini, proven as good on 365 articles |
 | Classifying texts | 10% | 72% | 0.93 / 0.95 | gpt-4.1-mini, proven as good on 729 questions |
@@ -51,8 +51,10 @@ judge, gpt-4o itself), on a 0-1 scale of closeness - not a share of correct answ
 - One composed day, not a real company's traffic: more repeats, summaries or classifications save
   more, long open-ended work less. `tools/audit.py` estimates it from a company's own logs.
 - Per kind, 60-100 requests are too few to prove a difference either way. The chats are support
-  conversations stitched from a public dataset; that gpt-4.1-mini scores *higher* there means its
-  replies are closer to the dataset's reference answers, not that it is a better model.
+  conversations stitched from a public dataset. gpt-4.1-mini scores *higher* there mostly because
+  gpt-4o writes twice as long as the reference; so a **blind check** followed, fixed in advance: on 193
+  fresh conversations gpt-4o, as judge, preferred gpt-4.1-mini's reply 56 times, its own 36 times,
+  and called 101 a tie - as good, not better.
 - Arithmetic and code stay on gpt-4o. How each number was measured, and what it does *not* show:
   [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). Repeat it: `python -m evaluation.company_day`.
 

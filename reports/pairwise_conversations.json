@@ -1,0 +1,1173 @@
+{
+ "questions": 193,
+ "cheap_wins": 56,
+ "strong_wins": 36,
+ "ties": 101,
+ "cheap_share": 0.552,
+ "interval": [
+  0.503,
+  0.598
+ ],
+ "verdict": "pass",
+ "spent_eur": 0.8903,
+ "records": [
+  {
+   "id": "chatconfirm_0",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_1",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_2",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_3",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_4",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_5",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_6",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_7",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_8",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_9",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_10",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_11",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_12",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_13",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_14",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_15",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_16",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_17",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_18",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_19",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_20",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_21",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_22",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_23",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_24",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_25",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_26",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_27",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_28",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_29",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_30",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_31",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_32",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_33",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_34",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_35",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_36",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_37",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_38",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_39",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_40",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_41",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_42",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_43",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_44",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_45",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_46",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_48",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_49",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_50",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_51",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_52",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_53",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_54",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_55",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_56",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_58",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_59",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_60",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_61",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_62",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_63",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_64",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_65",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_66",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_67",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_68",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_69",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_70",
+   "first": "B",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_71",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_72",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_73",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_74",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_75",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_76",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_77",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_78",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_79",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_80",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_81",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_82",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_83",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_84",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_85",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_86",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_87",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_89",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_90",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_91",
+   "first": "B",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_92",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_93",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_94",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_95",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_96",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_97",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_98",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_99",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_100",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_101",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_102",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_103",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_104",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_105",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_106",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_107",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_108",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_109",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_110",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_111",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_112",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_113",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_114",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_115",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_116",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_117",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_118",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_119",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_120",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_121",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_122",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_123",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_124",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_125",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_126",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_127",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_128",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_129",
+   "first": "B",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_130",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_131",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_132",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_133",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_134",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_135",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_136",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_137",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_138",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_139",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_140",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_141",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_142",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_143",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_144",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_145",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_146",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_147",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_148",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_149",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_150",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_151",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_152",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_153",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_154",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_155",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_156",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_157",
+   "first": "B",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_158",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_159",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_160",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_161",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_162",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_164",
+   "first": "B",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_165",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_166",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_168",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_169",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_170",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_171",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_172",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_173",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_174",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_175",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_176",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_177",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_178",
+   "first": "TIE",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_179",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_180",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_182",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_183",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_184",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_185",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_186",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_187",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_188",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_189",
+   "first": "TIE",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_190",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_192",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_193",
+   "first": "A",
+   "second": "A",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_194",
+   "first": "A",
+   "second": "B",
+   "cheap_score": 1.0
+  },
+  {
+   "id": "chatconfirm_195",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  },
+  {
+   "id": "chatconfirm_196",
+   "first": "A",
+   "second": "TIE",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_197",
+   "first": "B",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_198",
+   "first": "TIE",
+   "second": "B",
+   "cheap_score": 0.5
+  },
+  {
+   "id": "chatconfirm_199",
+   "first": "B",
+   "second": "A",
+   "cheap_score": 0.0
+  }
+ ]
+}

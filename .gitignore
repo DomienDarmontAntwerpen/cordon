@@ -14,6 +14,7 @@ data/*.sqlite-shm
 reports/*
 !reports/model_card.md
 !reports/company_day.json
+!reports/pairwise_conversations.json
 
 # --- Section: OS / editor noise ---
 .DS_Store

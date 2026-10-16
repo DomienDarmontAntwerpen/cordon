@@ -325,8 +325,9 @@ Over the whole day Cordon's quality is no lower (95% interval of the difference 
 Per kind the intervals are wide at 60-100 requests ("not proven" at this size), and the figures
 move a few points between runs (support was 0.28 / 0.35 in the previous run); the routes
 themselves are proven on larger rounds below. The same day saved 29% before the chat and summary
-routes, and 54% before the conversation route. The day was measured just before a fix to the
-"cut off" rule (below); the fix only lowers how often an answer is sent on.
+routes, and 54% before the conversation route. The day was measured just before two fixes (below):
+the "cut off" rule, which only lowers how often an answer is sent on, and the narrower shape of a
+conversation, under which 58 of the day's 60 chats still take the conversation route.
 
 ### Answer quality through Cordon
 
@@ -351,8 +352,8 @@ the average, and as a loss only when they fail outright. The routing table
 |---|---|---|---|---|
 | Classification | 729 | gpt-4.1-mini + check at 0.5 (17% sent on) | 91.1% vs 90.8% | 33% |
 | Summaries (long texts) | 365 | gpt-4.1-mini | 0.465 vs 0.460 | 16% |
-| Conversations (sent with earlier turns) | 375 | gpt-4.1-mini, rules only (1% sent on) | 0.457 vs 0.347 | 17% |
-| Chat / general questions | 536 | gpt-4.1-mini + check at 0.5 (44% sent on) | 75.4% vs 75.0% | 60% |
+| Conversations (sent with earlier turns) | 367 | gpt-4.1-mini, rules only (1% sent on) | 0.459 vs 0.348; blind: preferred 56 vs 36 | 17% |
+| Chat / general questions | 544 | gpt-4.1-mini + check at 0.5 (44% sent on) | 74.8% vs 74.3% | 60% |
 | Arithmetic / reasoning | 429 | none proven | gpt-4o-mini 95% vs 97% (asked plainly) | - |
 | Code | 189 | none proven | | - |
 
@@ -368,9 +369,23 @@ What these numbers do **not** show:
   questions where it does not. The split (`routing.classify_request`: a chat with an earlier
   assistant reply is a conversation) was committed with its decision rule before a **fresh round of
   200 conversations** was answered (4922b26); on the 197 both models answered: 0.459 vs 0.339, a
-  failed answer on at most 1.5%, 17% of the cost - passed. The conversations are support questions
-  from one public dataset stitched into chats, scored by closeness to that dataset's reference
-  answers; on a company's own chats the gap may be smaller.
+  failed answer on at most 2.2% (1.5% at plain 95%), 17% of the cost - passed.
+- **That higher score is mostly length:** the reference-based score (ROUGE-L plus a 1-5 judge asked
+  how *faithful a summary* is to the reference) favours replies of the reference's length - median
+  87 words; gpt-4.1-mini 90, gpt-4o 201. Where gpt-4o's reply is at most 1.5x the reference, the gap
+  shrinks to +0.05 (confirmation round) and +0.00 (route round). No reply of either model scored 0,
+  so for these graded answers the loss bound rests on the number of questions, not on losses; under
+  the strict right/wrong rule gpt-4.1-mini scores lower on 37 of 200 and would not pass.
+- **So a blind pairwise check was added, fixed in advance** (f0f20b4, `evaluation/pairwise_judge.py`):
+  gpt-4o sees the conversation and both replies, models hidden, judged twice in both orders (a win
+  needs both). On the 193 fresh conversations: gpt-4.1-mini preferred 56 times, gpt-4o 36, tie 101;
+  gpt-4.1-mini's share 0.55 (95% 0.50-0.60), above the fixed bar of 0.45 - passed, EUR 0.89.
+  `reports/pairwise_conversations.json` holds every judgement.
+- **The conversations are synthetic:** four unrelated support questions from one public dataset
+  (27 intents) stitched into a chat, so this is a same-distribution test, not one on new kinds of
+  chat. Hence the route only takes that shape (`routing._is_chat_conversation`): user and assistant
+  text, up to 9 messages and 1,000 words, chat questions only, no user turn with two or more
+  numbers. A system prompt, tools, attachments, code or arithmetic keep a request out of it.
 - **Personal data changes what a model says:** with a masked email (`<EMAIL_1>`) in a support
   question, gpt-4.1-mini more often answers "I can't access your account"; the rules see a refusal
   and ask gpt-4o, so such a request costs *more* than going straight (both models are paid), not
@@ -379,7 +394,8 @@ What these numbers do **not** show:
 - **The "cut off" rule was fixed** (16 October): a complete answer ending in a short word and a
   question or exclamation mark ("Would you like that?") counted as cut off - 39 of 9,255 stored
   answers. Retraining left the ML model byte-identical; the routes stayed the same, and the share
-  sent on dropped (conversations 1.9% to 0.8%, summaries 0.5% to 0%).
+  sent on dropped (conversations 1.9% to 0.8%, summaries 0.5% to 0%). Live, the provider's own
+  `finish_reason: length` now also counts as cut off (stored answers do not carry it).
 - **The quality check adds little on classification and summaries.** On gpt-4.1-mini's
   classification answers it separates right from wrong barely better than chance (AUC 0.58); the
   summary route runs on the rules only. Those routes hold because gpt-4.1-mini itself is about as
