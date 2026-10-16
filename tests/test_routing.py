@@ -137,3 +137,13 @@ def test_the_routing_table_file_loads_as_routes(tmp_path, monkeypatch):
     assert routing._load_routing_table() == {}
     path.write_text("categories:\n  code:\n    easy: {model: gpt-4o-mini, gate_threshold: 0.7, escalated: 0.46}\n")
     assert routing._load_routing_table() == {"code": {"easy": routing.Route("gpt-4o-mini", 0.7, 0.46)}}
+
+
+def test_a_chat_turn_with_earlier_replies_is_a_conversation():
+    """Conversations are measured and routed apart from one-off questions; other kinds keep their category."""
+    from src.savings import routing
+
+    history = [{"role": "user", "content": "hi"}, {"role": "assistant", "content": "Hello! How can I help?"}]
+    assert routing.classify_request([{"role": "user", "content": "Where is my order?"}], None)[0] == "chat"
+    assert routing.classify_request(history + [{"role": "user", "content": "Where is my order?"}], None)[0] == "conversation"
+    assert routing.classify_request(history + [{"role": "user", "content": "Classify this as spam or not: win now"}], None)[0] == "classification"

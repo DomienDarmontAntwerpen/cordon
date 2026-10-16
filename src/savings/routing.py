@@ -40,7 +40,7 @@ def _load_routing_table() -> dict:
 
 ROUTING_TABLE: dict = _load_routing_table()
 
-CATEGORIES: tuple[str, ...] = ("extraction", "classification", "summarization", "code", "reasoning", "chat")
+CATEGORIES: tuple[str, ...] = ("extraction", "classification", "summarization", "code", "reasoning", "chat", "conversation")
 
 # --- Section: request classification — heuristic, explainable, fast ---
 _CATEGORY_KEYWORDS: dict[str, tuple[str, ...]] = {
@@ -107,6 +107,10 @@ def classify_request(messages: list[dict], response_format: dict | None) -> tupl
     elif category == "reasoning" and multistep_count >= 1:
         difficulty = "hard"
 
+    # A chat turn that continues a conversation (earlier assistant replies are sent along) is its own
+    # kind: models are measured separately on it, apart from one-off questions such as arithmetic.
+    if category == "chat" and any(m.get("role") == "assistant" for m in messages[:-1]):
+        category = "conversation"
     return category, difficulty
 
 

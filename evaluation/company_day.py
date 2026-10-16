@@ -120,6 +120,19 @@ DOLLY_URL = "https://huggingface.co/datasets/databricks/databricks-dolly-15k/res
 GENERAL_KINDS = ("open_qa", "general_qa", "brainstorming", "creative_writing")  # questions without a given text
 
 
+def build_conversation_confirmation(count: int = 200) -> Path:
+    """
+    Fresh support conversations (Bitext rows past every earlier round: the day's 330 and the route
+    round's 1,000), to confirm the conversation route on data it was not chosen on.
+    """
+    support = pd.read_csv(_download("bitext.csv", BITEXT_URL)).sample(frac=1, random_state=SEED)
+    start = SUPPORT_UNIQUE + DAY["chat"] * 5 + 200 * 5  # past the day and the 200-chat route round
+    chats = [{**item, "id": f"chatconfirm_{n}"} for n, item in enumerate(_chats(support.iloc[start - SUPPORT_UNIQUE:], count))]
+    path = EXTERNAL_DIR / f"extra_chats_confirm_{len(chats)}.jsonl"
+    path.write_text("".join(json.dumps({k: v for k, v in i.items() if k != "kind"}) + "\n" for i in chats), encoding="utf-8")
+    return path
+
+
 def build_confirmation_rounds(count: int = 200) -> list[Path]:
     """
     Fresh evidence for the chat and summary routes: summaries of CNN articles no earlier round used,
@@ -220,7 +233,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--confirm-rounds", action="store_true", help="instead: write the fresh confirmation rounds")
     args = parser.parse_args(argv)
     if args.confirm_rounds:
-        print("\n".join(f"wrote {p}" for p in build_confirmation_rounds()))
+        print("\n".join(f"wrote {p}" for p in [*build_confirmation_rounds(), build_conversation_confirmation()]))
         return 0
     if args.route_rounds:
         print("\n".join(f"wrote {p}" for p in build_route_rounds()))
