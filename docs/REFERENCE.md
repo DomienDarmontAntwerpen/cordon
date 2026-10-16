@@ -221,9 +221,14 @@ these errors without changes. The `code` field says exactly what happened.
   duplicate sentences/paragraphs, never "unimportant" words - meaning is
   never touched. The system prompt is never shortened, because providers
   cache it on their side.
-- **Images follow OpenAI's own token formula** (fit 2048×2048, shortest side
-  768, 85 + 170 tokens per tile). Pixel size is checked before decoding;
-  photos default to `detail: low`. Re-encoding strips EXIF/GPS data.
+- **Images are counted as each model is billed for them** (`optimize.image_tokens`, exact to the
+  token on 19 live-measured requests): gpt-4o 85 + 170 per 512-px tile; gpt-4o-mini 2,833 + 5,667 per tile
+  (about 33x the tokens, at a lower price); the gpt-4.1 minis per 32-px patch (at most 3,072) times
+  1.62 or 2.46, with `detail` ignored. LiteLLM counts every model with gpt-4o's rule, so before this
+  an image request's cost without Cordon was under-counted - and the per-request input limit was
+  bypassed: one high-detail photo is 25,501 tokens for gpt-4o-mini, above the default
+  `max_input_tokens` of 16,000 (raise it for teams that send photos). Pixel size is checked before
+  decoding; photos default to `detail: low`. Re-encoding strips EXIF/GPS data.
 - **"Net savings" = what it would have cost minus what it did cost.**
   Routing savings are always marked *estimated*, because the expensive
   model was never actually called, so its cost can't be measured.
@@ -302,8 +307,14 @@ cost count). About 3,000 questions with known or reference answers, from public 
 [Data sources](#data-sources)), drawn by `evaluation/fetch_eval_sets.py` and
 `evaluation/company_day.py` in never-overlapping samples. Every answer is stored with its score in
 `data/labelled_answers/`, so everything below is rebuilt without API calls. Rounds that decided a
-route were committed (plan and decision rule) before any of their answers existed. The 5 live checks
-(`pytest -m live`) pass, including billed cost within 5% of OpenAI's own usage.
+route were committed (plan and decision rule) before any of their answers existed. The 10 live checks
+(`pytest -m live`, about one cent) pass: a plain and a streamed call, the openai SDK, a cache hit at
+zero cost, billed cost within 5% of OpenAI's own usage, and every component that changes what
+reaches OpenAI - personal data never sent and restored in the answer, a phone photo sent shrunk and
+without GPS data and still read, a pasted text billed for far fewer tokens, the answer-length cap
+and a cut-off answer reported as such, and a classification answered by the proven route. The leak guard
+(hidden instructions in an answer) is tested offline with a forced leak: asked live to repeat their
+instructions, OpenAI's models refused themselves in all 5 tries.
 
 ### A measured working day
 
@@ -434,7 +445,7 @@ on gpt-4.1-mini's classification answers it is near chance (0.58).
 | What | Result | How |
 |---|---|---|
 | Shrinking one long request | €0.01489 → €0.00897 (40% cheaper), a constructed example | `tools/demo.py`, trim scenario |
-| One large invoice photo | 765 → 85 tokens (89% cheaper), location data removed | OpenAI's image-token formula |
+| One 2000×1500 phone photo, gpt-4o-mini | 25,501 → 2,833 billed tokens (89% cheaper), GPS data removed, the number on it still read | live: `tests/test_live.py` |
 | Time Cordon adds per request | 24 ms typical, 31 ms for the slowest 5% (mock provider, so Cordon's own time) | `evaluation/measure_overhead.py`, all features on, a MacBook |
 | Under load | 1,000 requests at once, 1 s per provider call: all answered and booked exactly, about 90 per second on one process (`--worker-threads 256 --max-in-flight 1024`). At the default capacity 96 are served at once and the rest get a clean "busy, retry" (503) | `evaluation/load_test.py` |
 | Hostile input | 10,000 random and malformed requests (5,000 per mode): no crash, every error in OpenAI's format | `CORDON_FUZZ_REQUESTS=5000 pytest tests/test_fuzz.py` (300 per mode normally) |
@@ -473,7 +484,7 @@ Used here for non-commercial evaluation only; each stays under its own terms.
 ### Reproduce
 
 ```bash
-.venv/bin/python -m pytest -m live -v                                  # 5 live checks, < 1 cent
+.venv/bin/python -m pytest -m live -v                                  # 10 live checks, about 1 cent
 .venv/bin/python -m evaluation.fetch_eval_sets                         # the evaluation set
 .venv/bin/python -m evaluation.benchmark --live --golden-set data/external/extended_golden_set.jsonl
 .venv/bin/python -m evaluation.fetch_eval_sets --extra agnews 200      # an extra round, disjoint from all others

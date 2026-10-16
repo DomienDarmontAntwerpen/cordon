@@ -98,23 +98,29 @@ def test_truncate_tool_output_noop_under_budget():
     assert result[0]["content"] == "short result"
 
 
-def test_openai_image_tokens_matches_known_reference_values():
-    """openai_image_tokens matches known reference values."""
+@pytest.mark.parametrize("model, width, height, detail, billed", [
+    # what OpenAI billed live (16 October 2026): prompt tokens with the image minus without it
+    ("gpt-4o", 2000, 1500, "high", 765), ("gpt-4o", 2000, 1500, "low", 85), ("gpt-4o", 512, 384, "high", 255),
+    ("gpt-4o-mini", 2000, 1500, "high", 25501), ("gpt-4o-mini", 2000, 1500, "low", 2833), ("gpt-4o-mini", 512, 384, "high", 8500),
+    ("gpt-4.1-mini", 2000, 1500, "low", 4796), ("gpt-4.1-mini", 512, 384, "high", 311), ("gpt-4.1-mini", 4000, 3000, "high", 4976),
+    ("gpt-4.1-mini", 1000, 1000, "high", 1658), ("gpt-4.1-mini", 700, 300, "high", 356),
+    ("gpt-4.1-nano", 2000, 1500, "high", 7284), ("gpt-4.1-nano", 512, 384, "high", 472),
+])
+def test_image_tokens_match_what_openai_billed(model, width, height, detail, billed):
+    """Each model is billed by its own rule (gpt-4o-mini ~33x gpt-4o's tokens; the gpt-4.1 minis per 32-px patch)."""
     from src.savings import optimize
 
-    assert optimize.openai_image_tokens(1024, 1024, "high") == 765
-    assert optimize.openai_image_tokens(512, 512, "high") == 255
-    assert optimize.openai_image_tokens(4000, 3000, "low") == 85
+    assert optimize.image_tokens(f"openai/{model}", width, height, detail) == billed
 
 
-def test_openai_image_tokens_zero_savings_when_tile_count_unchanged():
-    """openai_image_tokens zero savings when tile count unchanged."""
+def test_image_savings_are_zero_when_the_tile_count_is_unchanged():
+    """No saving is counted when shrinking leaves the billed tiles the same."""
     from src.savings import optimize
 
     part = {"type": "image_url", "image_url": {"url": png_data_url(4000, 3000)}}
     # A generous max_side that still collapses to the same tile count OpenAI
     # would have produced from the original image: savings must be 0.
-    result = optimize.optimize_image_part(part, image_max_side=1600, detail_low_for_photos=False, is_document=True)
+    result = optimize.optimize_image_part(part, image_max_side=1600, detail_low_for_photos=False, is_document=True, model="gpt-4o")
     assert result.savings_tokens == 0
 
 
@@ -123,7 +129,7 @@ def test_optimize_image_part_downgrades_detail_and_reports_savings():
     from src.savings import optimize
 
     part = {"type": "image_url", "image_url": {"url": png_data_url(3000, 4000)}}
-    result = optimize.optimize_image_part(part, image_max_side=512, detail_low_for_photos=True, is_document=False)
+    result = optimize.optimize_image_part(part, image_max_side=512, detail_low_for_photos=True, is_document=False, model="gpt-4o")
     assert result.detail == "low"
     assert result.savings_tokens > 0
     assert result.exif_stripped
@@ -152,3 +158,14 @@ def test_check_image_pixel_limits_ignores_remote_urls():
 
     messages = [{"role": "user", "content": [{"type": "image_url", "image_url": {"url": "https://example.com/huge.png"}}]}]
     optimize.check_image_pixel_limits(messages, max_image_pixels=1)  # must not raise - Cordon never fetches it
+
+
+def test_a_request_is_counted_with_its_images_as_the_model_bills_them():
+    """The cost without Cordon (baseline) includes each attached image at the requested model's own rate."""
+    from src.savings import costing
+
+    image = {"type": "image_url", "image_url": {"url": png_data_url(2000, 1500), "detail": "high"}}
+    messages = [{"role": "user", "content": [{"type": "text", "text": "hi"}, image]}]
+    text_only = costing.count_message_tokens("openai/gpt-4o-mini", [{"role": "user", "content": "hi"}])
+    assert costing.count_message_tokens("openai/gpt-4o-mini", messages) - text_only == 25501
+    assert costing.count_message_tokens("openai/gpt-4o", messages) - text_only == 765

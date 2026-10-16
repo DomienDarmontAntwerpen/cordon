@@ -61,7 +61,8 @@ def _optimize_images(ctx: RequestContext, services: Services) -> None:
     try:
         candidate, saved_tokens = [], 0
         for message in ctx.effective_messages:
-            new_message, saved = _shrink_images(message, image_max_side, detail_low_for_photos, ctx.request_category == "extraction")
+            new_message, saved = _shrink_images(message, image_max_side, detail_low_for_photos,
+                                                ctx.request_category == "extraction", ctx.litellm_name)
             candidate.append(new_message)
             saved_tokens += saved
     except Exception:
@@ -75,7 +76,7 @@ def _optimize_images(ctx: RequestContext, services: Services) -> None:
         ctx.effective_messages = candidate
 
 
-def _shrink_images(message: dict, max_side: int, detail_low_for_photos: bool, is_document: bool) -> tuple[dict, int]:
+def _shrink_images(message: dict, max_side: int, detail_low_for_photos: bool, is_document: bool, model: str) -> tuple[dict, int]:
     """A copy of message with every image part downscaled, and the tokens saved. The input is never changed."""
     content = message.get("content")
     if not isinstance(content, list):
@@ -83,7 +84,7 @@ def _shrink_images(message: dict, max_side: int, detail_low_for_photos: bool, is
     new_content, saved = [], 0
     for part in content:
         if isinstance(part, dict) and part.get("type") == "image_url":
-            result = optimize.optimize_image_part(part, max_side, detail_low_for_photos, is_document=is_document)
+            result = optimize.optimize_image_part(part, max_side, detail_low_for_photos, is_document=is_document, model=model)
             saved += result.savings_tokens
             part = {"type": "image_url", "image_url": {"url": result.data_url, "detail": result.detail}}
         new_content.append(part)

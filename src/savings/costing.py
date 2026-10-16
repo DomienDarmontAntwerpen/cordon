@@ -27,11 +27,47 @@ def count_message_tokens(litellm_name: str, messages: list[dict]) -> int:
     in the messages instead. Why: a crash here used to reject valid requests -
     or, for a fail-open tenant, skip every later check.
     """
+    messages, image_tokens = _count_images_apart(litellm_name, messages)
     try:
-        return litellm.token_counter(model=litellm_name, messages=messages)
+        return litellm.token_counter(model=litellm_name, messages=messages) + image_tokens
     except Exception:
         text = "\n".join(messages_module.message_text(m.get("content")) for m in messages if isinstance(m, dict))
-        return litellm.token_counter(model=litellm_name, text=text) if text else 0
+        return (litellm.token_counter(model=litellm_name, text=text) if text else 0) + image_tokens
+
+
+def _count_images_apart(litellm_name: str, messages: list[dict]) -> tuple[list[dict], int]:
+    """
+    The messages without their attached (data-URL) images, and those images' tokens as this model is
+    billed for them. LiteLLM counts every image with gpt-4o's rule; gpt-4o-mini is billed ~33x that.
+    An image Cordon cannot read (a web link) stays in the messages for LiteLLM to count.
+    """
+    from src.savings import optimize
+
+    kept, tokens = [], 0
+    for message in messages:
+        content = message.get("content") if isinstance(message, dict) else None
+        if not isinstance(content, list):
+            kept.append(message)
+            continue
+        parts = []
+        for part in content:
+            size = _attached_image_size(part)
+            if size is None:
+                parts.append(part)
+            else:
+                tokens += optimize.image_tokens(litellm_name, *size, (part.get("image_url") or {}).get("detail", "high"))
+        kept.append({**message, "content": parts})
+    return kept, tokens
+
+
+def _attached_image_size(part) -> tuple[int, int] | None:
+    """(width, height) of an image part sent as a data URL, or None (not an image, or not readable)."""
+    from src.savings import optimize
+
+    if not isinstance(part, dict) or part.get("type") != "image_url":
+        return None
+    parsed = optimize.parse_data_url((part.get("image_url") or {}).get("url", ""))
+    return optimize.read_image_dimensions(parsed[0]) if parsed else None
 
 
 # --- Section: measured vs estimated — which techniques get which label ---

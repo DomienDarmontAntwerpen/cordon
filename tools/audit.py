@@ -301,7 +301,7 @@ def estimate_vision_savings(records: list[dict], config: dict, model_aliases: di
 
     Parameters: records, config, model_aliases, image_max_side.
     Returns: total EUR savings, computed from the exact OpenAI image-token
-    algorithm (optimize.openai_image_tokens) on each image's reported
+    rule per model (optimize.image_tokens) on each image's reported
     width/height - no image bytes are needed, only their dimensions, which
     is itself a privacy-friendly property of this estimate (no image
     content ever has to leave the client's log).
@@ -320,10 +320,10 @@ def estimate_vision_savings(records: list[dict], config: dict, model_aliases: di
             detail = image.get("detail", "high")
             if detail == "low":
                 continue  # already flat 85 tokens; nothing left to save on tokens
-            tokens_before = optimize.openai_image_tokens(width, height, detail)
+            tokens_before = optimize.image_tokens(litellm_name, width, height, detail)
             scale = min(1.0, image_max_side / max(width, height))
             new_width, new_height = max(1, round(width * scale)), max(1, round(height * scale))
-            tokens_after = optimize.openai_image_tokens(new_width, new_height, "low")
+            tokens_after = optimize.image_tokens(litellm_name, new_width, new_height, "low")
             saved_tokens = max(0, tokens_before - tokens_after)
             if saved_tokens:
                 total_savings += _cost_eur(litellm_name, saved_tokens, 0, config)

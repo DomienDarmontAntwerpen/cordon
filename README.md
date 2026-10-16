@@ -25,38 +25,30 @@
 
 - **Protects data:** emails, phone numbers, IBANs, national ID and card numbers become placeholders before a request leaves the company, and are put back in the answer.
 - **Blocks manipulation:** prompt-injection attempts are flagged or blocked; leaks of the hidden instructions are redacted.
-- **Saves money, measured:** 80% less on a simulated working day; a cheaper model is used only where it was proven as good on hundreds of real questions - see [A measured working day](#a-measured-working-day).
+- **Saves money, measured:** 80% less on a simulated working day; a cheaper model is used only where it was proven as good on hundreds of real questions - see [Results](#results).
 - **Controls spend:** a budget and rate limit per team, and a stop for AI agents stuck in a loop.
 - **Shows it all:** a dashboard per team, with an *observe* mode that measures what Cordon *would* save before anything changes, and a panel to send a request and see what Cordon did.
 - **Keeps working:** a failsafe in front of Cordon sends requests straight to the provider when Cordon is down.
 
-## A measured working day
+## Results
 
-To see what Cordon saves on a company's bill, we **simulated one working day**: 300 requests built
-from real, public data - texts to classify, customer-support questions (popular ones asked again
-and again), support chats sent with their history, news articles to summarize. Every request was
-sent **live to OpenAI twice**: straight to gpt-4o, as a company pays today, and through Cordon with
-its savings on. The costs are **OpenAI's prices for the tokens it really billed**. Classifications are scored by their
-known label; the other answers by closeness to the dataset's reference answer (ROUGE-L plus an LLM
-judge, gpt-4o itself), on a 0-1 scale of closeness - not a share of correct answers.
+A simulated working day: 300 requests from public datasets, each sent **live to OpenAI twice** -
+straight to gpt-4o, as a company pays today, and through Cordon - priced on the tokens OpenAI billed.
 
-| Kind of request | Share of the bill | Saved | Quality 0-1 (straight / Cordon) | How |
-|---|---|---|---|---|
-| Chats with history | 34% | 86% | 0.37 / 0.45 | gpt-4.1-mini, proven on 367 conversations and in a blind check on 193 fresh ones |
-| Support questions | 30% | 78% | 0.30 / 0.29 | repeats come from the cache; the rest from a cheaper model |
-| Summaries | 26% | 75% | 0.46 / 0.46 | gpt-4.1-mini, proven as good on 365 articles |
-| Classifying texts | 10% | 72% | 0.93 / 0.95 | gpt-4.1-mini, proven as good on 729 questions |
-| **Whole day** | | **80%** | no measurable loss over the day | EUR 0.64 straight vs EUR 0.13 through Cordon |
+| Kind of request | Share of the bill | Saved | Quality, straight / Cordon |
+|---|---|---|---|
+| Chats with history | 34% | 86% | 0.37 / 0.45 |
+| Support questions | 30% | 78% | 0.30 / 0.29 |
+| Summaries | 26% | 75% | 0.46 / 0.46 |
+| Classifying texts | 10% | 72% | 0.93 / 0.95 |
+| **Whole day** | | **80%** (EUR 0.64 → 0.13) | **no measurable loss** |
 
-- One composed day, not a real company's traffic: more repeats, summaries or classifications save
-  more, long open-ended work less. `tools/audit.py` estimates it from a company's own logs.
-- Per kind, 60-100 requests are too few to prove a difference either way. The chats are support
-  conversations stitched from a public dataset. gpt-4.1-mini scores *higher* there mostly because
-  gpt-4o writes twice as long as the reference; so a **blind check** followed, fixed in advance: on 193
-  fresh conversations gpt-4o, as judge, preferred gpt-4.1-mini's reply 56 times, its own 36 times,
-  and called 101 a tie - at least as good.
-- Arithmetic and code stay on gpt-4o. How each number was measured, and what it does *not* show:
-  [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). Repeat it: `python -m evaluation.company_day`.
+A cheaper model (gpt-4.1-mini) takes a kind of request only after a live proof on hundreds of
+questions, with the plan fixed in advance; arithmetic and code stay on gpt-4o. Quality is the known
+label for classifications and closeness to a reference answer (0-1) for the rest; on chats the higher
+score mostly reflects shorter replies, and a blind comparison found gpt-4.1-mini at least as good.
+One composed day is not a company's traffic - method, caveats and how to repeat it:
+[docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence).
 
 ## What I decided
 
@@ -109,7 +101,7 @@ If a money-saving step fails, the request goes through without that saving; if a
 | Dashboard | plain HTML/CSS/JS, Chart.js |
 | Failsafe | nginx |
 | Deployment | Docker Compose |
-| Testing | pytest: 300+ offline tests, 5 live checks, a 10,000-request fuzz run |
+| Testing | pytest: 340 offline tests, 10 live checks (every component that changes what reaches OpenAI), a 10,000-request fuzz run |
 
 ## Getting started
 
@@ -137,7 +129,7 @@ Going live, team admin and deployment: [docs/REFERENCE.md](docs/REFERENCE.md#run
 
 ```bash
 .venv/bin/python -m pytest tests/              # offline
-.venv/bin/python -m pytest -m live             # 5 live checks, needs OPENAI_API_KEY, < 1 cent
+.venv/bin/python -m pytest -m live             # 10 live checks, needs OPENAI_API_KEY, about 1 cent
 ```
 
 ## Project structure
@@ -155,9 +147,10 @@ Also: [SECURITY.md](SECURITY.md) (threat model, data handling) and [reports/mode
 
 ## Status & next steps
 
-A working, tested prototype; every saving and quality number above was measured live on OpenAI (about EUR 10 in total; the dashboard overview shows mock traffic) and can be repeated (`evaluation/company_day.py`). How each was measured, and what it does *not* show: [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). In progress, each measured before it is switched on: a route for arithmetic (asked plainly, gpt-4o-mini comes close: 95% vs 97%), shorter chat histories, a batch mode for work that can wait - and a pilot on a company's own traffic, the real test of any route.
-
-Reviewed in rounds by AI review agents (software and security, ML evaluation, a recruiter and a client's CTO); every confirmed bug has a regression test that fails without the fix.
+A working, tested prototype, reviewed in rounds by AI review agents (software and security, ML
+evaluation, a recruiter, a client's CTO); every confirmed bug has a regression test. Next, each
+measured before it is switched on: an arithmetic route, shorter chat histories, a batch mode - and a
+pilot on a company's own traffic, the real test of any route.
 
 ## Author
 **Domien Darmont** — Operational leader building applied AI systems, Antwerp, Belgium  

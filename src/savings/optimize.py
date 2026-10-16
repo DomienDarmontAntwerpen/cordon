@@ -416,7 +416,14 @@ def check_image_pixel_limits(messages: list[dict], max_image_pixels: int) -> Non
             raise ImageTooLargeError(width, height)
 
 
-# --- Section: OpenAI's exact image-tokenization algorithm ---
+# --- Section: what an image costs, per model, as OpenAI bills it ---
+# Measured live on 16 October 2026 (prompt tokens of a request with one image, minus the same request
+# without it; exact to the token on all 19 measured requests): gpt-4o and gpt-4o-mini bill 512-px tiles (gpt-4o-mini
+# at about 33x the tokens - its tokens are cheaper); the gpt-4.1 minis bill 32-px patches, capped at
+# 3,072, times a multiplier, and ignore "detail". Other models: gpt-4o's rule (as LiteLLM assumes).
+_TILE_RULES = {"gpt-4o": (85, 170), "gpt-4o-mini": (2833, 5667)}
+_PATCH_RULES = {"gpt-4.1-mini": 1.62, "gpt-4.1-nano": 2.46}
+_PATCH_SIDE, _MAX_PATCHES = 32, 3072
 def _tile_count(width: float, height: float) -> int:
     """
     Compute the 512x512 tile count OpenAI's "high" detail algorithm would use.
@@ -436,17 +443,29 @@ def _tile_count(width: float, height: float) -> int:
     return math.ceil(w / 512) * math.ceil(h / 512)
 
 
-def openai_image_tokens(width: int, height: int, detail: str = "high") -> int:
-    """
-    Compute OpenAI's exact image token cost.
+def _patch_count(width: float, height: float) -> int:
+    """32x32 patches covering the image, after shrinking it to at most _MAX_PATCHES of them."""
+    w, h = float(width), float(height)
+    if math.ceil(w / _PATCH_SIDE) * math.ceil(h / _PATCH_SIDE) > _MAX_PATCHES:
+        scale = math.sqrt(_MAX_PATCHES * _PATCH_SIDE ** 2 / (w * h))
+        scale *= min(math.floor(w * scale / _PATCH_SIDE) / (w * scale / _PATCH_SIDE),
+                     math.floor(h * scale / _PATCH_SIDE) / (h * scale / _PATCH_SIDE))
+        w, h = w * scale, h * scale
+    return math.ceil(w / _PATCH_SIDE) * math.ceil(h / _PATCH_SIDE)
 
-    Parameters: width, height - image pixel dimensions.
-                 detail - "low" (flat 85 tokens) or "high"/"auto" (85 + 170 per tile).
-    Returns: the token count OpenAI itself would charge for this image.
+
+def image_tokens(model: str, width: int, height: int, detail: str = "high") -> int:
     """
-    if detail == "low":
-        return 85
-    return 85 + 170 * _tile_count(width, height)
+    The prompt tokens OpenAI bills for one image sent to this model.
+
+    Parameters: model - an alias or LiteLLM name ("gpt-4o-mini", "openai/gpt-4o-mini").
+                 width, height - image pixel dimensions. detail - "low", "high" or "auto".
+    """
+    name = model.split("/")[-1]
+    if name in _PATCH_RULES:
+        return int(_patch_count(width, height) * _PATCH_RULES[name])
+    base, per_tile = _TILE_RULES.get(name, _TILE_RULES["gpt-4o"])
+    return base if detail == "low" else base + per_tile * _tile_count(width, height)
 
 
 # --- Section: image optimization — downscale, detail, grayscale (documents), re-encode ---
@@ -524,6 +543,7 @@ def optimize_image_part(
     image_max_side: int,
     detail_low_for_photos: bool,
     is_document: bool,
+    model: str,
 ) -> ImageOptimizationResult:
     """
     Optimize one image content part: downscale, optionally downgrade detail,
@@ -532,6 +552,7 @@ def optimize_image_part(
     Parameters: image_part - a `{"type": "image_url", "image_url": {...}}` content part.
                  image_max_side - the tenant's optimize.image_max_side.
                  detail_low_for_photos - the tenant's optimize.image_detail_low_for_photos.
+                 model - the requested model, whose billing the saving is counted in.
                  is_document - True if this image was classified as a
                  document (routing.py's classification feeds this; a
                  document keeps "high" detail for OCR readability and gets
@@ -553,7 +574,7 @@ def optimize_image_part(
     if dims is None:
         return ImageOptimizationResult(url, requested_detail, 0, 0, 0, False)
     original_width, original_height = dims
-    tokens_before = openai_image_tokens(original_width, original_height, requested_detail)
+    tokens_before = image_tokens(model, original_width, original_height, requested_detail)
 
     try:
         image = decode_image(raw)
@@ -569,11 +590,8 @@ def optimize_image_part(
 
         payload_image = grayscale_image(resized) if is_document else resized
 
-        tokens_after = openai_image_tokens(new_width, new_height, new_detail)
-
-        downgraded_to_low = new_detail == "low" and requested_detail != "low"
-        tiles_improved = _tile_count(new_width, new_height) < _tile_count(original_width, original_height)
-        savings_tokens = max(0, tokens_before - tokens_after) if (downgraded_to_low or tiles_improved) else 0
+        tokens_after = image_tokens(model, new_width, new_height, new_detail)
+        savings_tokens = max(0, tokens_before - tokens_after)
 
         new_data_url = encode_image_to_data_url(payload_image, mime_type)
     except Exception:
