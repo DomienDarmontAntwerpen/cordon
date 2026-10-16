@@ -35,6 +35,7 @@ echo "ci.sh: installing dependencies"
 .venv/bin/pip install --upgrade pip --quiet
 .venv/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu --quiet
 .venv/bin/pip install -r requirements.txt --quiet
+.venv/bin/pip install -r requirements-eval.txt --quiet  # the evaluation tools are tested too
 
 # --- Section: model prefetch — embedding model + spaCy en_core_web_sm, offline afterwards ---
 echo "ci.sh: prefetching models"

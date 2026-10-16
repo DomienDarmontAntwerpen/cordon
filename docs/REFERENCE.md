@@ -168,7 +168,8 @@ cordon/
 | `reports/` | Generated reports (only `model_card.md` is kept in git). |
 | `notebooks/semantic_cache_threshold.ipynb` | How similar two questions must be before Cordon reuses an answer - measured on 40,430 labelled question pairs. |
 | `notebooks/quality_gate_real_answers.ipynb` | The quality check on real answers: baselines, over/underfitting, learning curve, neural networks, an LLM judge, the threshold trade-off. |
-| `requirements-dev.txt` | Extra packages for the notebooks and the screenshot script (not needed to run Cordon). |
+| `requirements-eval.txt` | Packages for the proof and measurement tools in `evaluation/` (installed by CI; not needed to run Cordon). |
+| `requirements-dev.txt` | Extra packages for the notebooks and the screenshot tools (includes `requirements-eval.txt`). |
 | `deploy/failsafe.conf.template` | The failsafe (nginx) in front of Cordon: requests go straight to the provider when Cordon cannot be reached. |
 | `Dockerfile`, `docker-compose.yml` | For running Cordon on a server. |
 | `SECURITY.md` | Full security and privacy write-up. |

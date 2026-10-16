@@ -1,0 +1,5 @@
+# The proof and measurement tools in evaluation/ (and their tests): reading the public datasets.
+# Not needed to run Cordon itself, so not in requirements.txt or the Docker image. CI installs it.
+#   .venv/bin/pip install -r requirements-eval.txt
+pandas==3.0.6
+pyarrow==26.0.0
