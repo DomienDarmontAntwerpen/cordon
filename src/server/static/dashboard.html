@@ -63,6 +63,7 @@
         <form id="try-form" class="try-form">
           <input id="try-key" type="password" autocomplete="off" placeholder="Team key (cdn_...) - filled in when you connect with one" />
           <textarea id="try-prompt" rows="3">Classify the sentiment of this review as positive or negative: "A warm, funny film." Mail me at jan.peeters@example.com</textarea>
+          <label class="try-option"><input id="try-history" type="checkbox" /> Send it as the next turn of a support conversation (with the two earlier turns, as chat apps do)</label>
           <button type="submit" id="try-send">Send</button>
         </form>
         <div id="try-result" class="try-result" hidden>

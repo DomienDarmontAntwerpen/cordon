@@ -62,7 +62,7 @@ some kinds nearly unguarded; that is why each route has its own, proven threshol
 | reasoning | 224 | 45 | 0.873 | 0.414 | 76% | 90% |
 
 ### Noise and coverage
-- 63 of the 699 questions gpt-4o-mini answered in more than one run got different labels:
+- 125 of the 1001 questions gpt-4o-mini answered in more than one run got different labels:
   the same model answers differently from run to run, which limits how precise any figure here can be.
 - The rule layer (empty, cut off, non-answer, refusal, error, invalid JSON) fired on none of these
   real answers - real models rarely produce such failures. It is tested on constructed cases

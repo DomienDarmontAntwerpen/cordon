@@ -25,7 +25,7 @@
 
 - **Protects data:** emails, phone numbers, IBANs, national ID and card numbers become placeholders before a request leaves the company, and are put back in the answer.
 - **Blocks manipulation:** prompt-injection attempts are flagged or blocked; leaks of the hidden instructions are redacted.
-- **Saves money, measured:** 54% less on a simulated working day; a cheaper model is used only where it was proven as good on hundreds of real questions - see [A measured working day](#a-measured-working-day).
+- **Saves money, measured:** 80% less on a simulated working day; a cheaper model is used only where it was proven as good on hundreds of real questions - see [A measured working day](#a-measured-working-day).
 - **Controls spend:** a budget and rate limit per team, and a stop for AI agents stuck in a loop.
 - **Shows it all:** a dashboard per team, with an *observe* mode that measures what Cordon *would* save before anything changes, and a panel to send a request and see what Cordon did.
 - **Keeps working:** a failsafe in front of Cordon sends requests straight to the provider when Cordon is down.
@@ -41,17 +41,20 @@ its savings on. The costs are **what OpenAI really billed**; every answer was sc
 
 | Kind of request | Share of the bill | Saved | Quality (straight / Cordon) | How |
 |---|---|---|---|---|
-| Chats with history | 33% | 5% | 0.38 / 0.40 | the quality check sends most of them to gpt-4o |
-| Support questions | 31% | 83% | 0.28 / 0.35 | repeats come from the cache; the rest from a cheaper model |
-| Summaries | 26% | 75% | 0.46 / 0.45 | gpt-4.1-mini, proven as good on 365 articles |
-| Classifying texts | 10% | 74% | 0.93 / 0.94 | gpt-4.1-mini, proven as good on 729 questions |
-| **Whole day** | | **54%** | per kind within the noise at this size | EUR 0.64 straight vs EUR 0.30 through Cordon |
+| Chats with history | 34% | 86% | 0.37 / 0.45 | gpt-4.1-mini, proven on 375 conversations (197 from a fresh round fixed in advance) |
+| Support questions | 30% | 78% | 0.30 / 0.29 | repeats come from the cache; the rest from a cheaper model |
+| Summaries | 26% | 75% | 0.46 / 0.46 | gpt-4.1-mini, proven as good on 365 articles |
+| Classifying texts | 10% | 72% | 0.93 / 0.95 | gpt-4.1-mini, proven as good on 729 questions |
+| **Whole day** | | **80%** | no measurable loss over the day | EUR 0.64 straight vs EUR 0.13 through Cordon |
 
 - It is one composed day, not a real company's traffic: a company saves more with many repeated
   questions, summaries or classifications, less with mostly long chats. `tools/audit.py` estimates
   it from a company's own logs.
 - Quality scores have their own scale per kind (right/wrong for classification, closeness to a
-  reference answer for the rest); per kind the differences are within the measurement's noise.
+  reference answer for the rest). Per kind, 60-100 requests are too few to prove a difference
+  either way, and the figures move a few points between runs.
+- The chats are support conversations stitched from a public dataset; gpt-4.1-mini's replies are
+  closer to its reference answers than gpt-4o's. On a company's own chats the gap may be smaller.
 - A cheaper model is used only where it was proven as good on hundreds of real questions, and each
   route was confirmed on fresh questions fixed in advance. Requests recognised as arithmetic or
   code stay on gpt-4o. How every number was measured, and what it does *not* show:
@@ -90,7 +93,7 @@ flowchart LR
 
 If a money-saving step fails, the request goes through without that saving; if a security step fails, the request is stopped.
 
-![Try a request, live on OpenAI: email masked, gpt-4.1-mini chosen, ML check passed, a real answer, 84% saved](docs/images/dashboard_try.png)
+![Try a request, live on OpenAI: the next turn of a support conversation, email masked, gpt-4.1-mini chosen, a real answer, 84% saved](docs/images/dashboard_try.png)
 
 <details>
 <summary>Teams, each in observe or enforce mode</summary>
@@ -156,7 +159,7 @@ Also: [SECURITY.md](SECURITY.md) (threat model, data handling) and [reports/mode
 
 ## Status & next steps
 
-A working, tested prototype; every number above was measured live on OpenAI (under EUR 10 in total) and can be repeated (`evaluation/company_day.py`). How each was measured, and what it does *not* show: [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). In progress, each measured before it is switched on: a route for arithmetic (asked plainly, gpt-4o-mini comes close: 95% vs 97%), shorter chat histories, a batch mode for work that can wait - and a pilot on a company's own traffic, the real test of any route.
+A working, tested prototype; every number above was measured live on OpenAI (about EUR 10 in total) and can be repeated (`evaluation/company_day.py`). How each was measured, and what it does *not* show: [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). In progress, each measured before it is switched on: a route for arithmetic (asked plainly, gpt-4o-mini comes close: 95% vs 97%), shorter chat histories, a batch mode for work that can wait - and a pilot on a company's own traffic, the real test of any route.
 
 Reviewed in rounds by AI review agents (software and security, ML evaluation, a recruiter and a client's CTO); every confirmed bug has a regression test that fails without the fix.
 

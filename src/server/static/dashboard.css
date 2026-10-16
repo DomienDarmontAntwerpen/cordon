@@ -268,6 +268,8 @@ h1, h2, h3 { margin: 0; }
   font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border);
   border-radius: 8px; padding: 8px 12px; resize: vertical;
 }
+.try-option { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+.try-form .try-option input { padding: 0; margin: 0; }
 .try-form button {
   justify-self: start; font: inherit; font-weight: 600; color: #ffffff; background: var(--button);
   border: 0; border-radius: 8px; padding: 8px 20px; cursor: pointer;

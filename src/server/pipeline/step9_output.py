@@ -92,12 +92,14 @@ def finish(ctx: RequestContext, services: Services) -> JSONResponse:
         "X-Cordon-Baseline-Cost": f"{baseline_eur:.6f}",
         "X-Cordon-Cache": ctx.cache_type_on_hit or "none",
         "X-Cordon-Route": ctx.served_alias,
+        "X-Cordon-Kind": f"{ctx.request_category}/{ctx.request_difficulty}",  # the routing bucket it fell in
         "X-Cordon-Fallback": "true" if ctx.fallback_occurred else "false",
         "X-Cordon-Overhead-Ms": f"{overhead_ms:.2f}",
         "X-Cordon-Mode": tenant_settings.get("mode", "observe"),
     }
     if ctx.quality_score is not None:
         headers["X-Cordon-Quality"] = f"{ctx.quality_score:.4f}"
+        headers["X-Cordon-Check"] = ctx.quality_reason or ""  # e.g. rules_only, classifier, refusal
     if ctx.guardrail_actions:  # counts per kind only (e.g. input_pii_email=1), never a value
         headers["X-Cordon-Guardrails"] = ",".join(f"{name}={count}" for name, count in sorted(ctx.guardrail_actions.items()))
 

@@ -12,8 +12,8 @@ categories:
     # gpt-4.1-mini + check at 0.5: 91.1% vs the strong model's 90.8% on 729 questions (99.58%: -0.015 to +0.019; a wrong or failed answer on at most 2.6%); 17% sent to the strong model; costs 33% of it - pass
     easy: {model: gpt-4.1-mini, gate_threshold: 0.5, escalated: 0.166}
   conversation:
-    # gpt-4.1-mini + check at 0.0: 45.6% vs the strong model's 34.7% on 375 questions (98.75%: +0.091 to +0.128; a wrong or failed answer on at most 1.2%); 2% sent to the strong model; costs 18% of it - pass
-    easy: {model: gpt-4.1-mini, gate_threshold: 0.0, escalated: 0.019}
+    # gpt-4.1-mini + check at 0.0: 45.7% vs the strong model's 34.7% on 375 questions (98.75%: +0.093 to +0.129; a wrong or failed answer on at most 1.2%); 1% sent to the strong model; costs 17% of it - pass
+    easy: {model: gpt-4.1-mini, gate_threshold: 0.0, escalated: 0.008}
   summarization:
-    # gpt-4.1-mini + check at 0.0: 46.5% vs the strong model's 46.0% on 365 questions (98.75%: -0.009 to +0.016; a wrong or failed answer on at most 1.2%); 1% sent to the strong model; costs 17% of it - pass
-    hard: {model: gpt-4.1-mini, gate_threshold: 0.0, escalated: 0.005}
+    # gpt-4.1-mini + check at 0.0: 46.5% vs the strong model's 46.0% on 365 questions (98.75%: -0.009 to +0.016; a wrong or failed answer on at most 1.2%); 0% sent to the strong model; costs 16% of it - pass
+    hard: {model: gpt-4.1-mini, gate_threshold: 0.0, escalated: 0.0}

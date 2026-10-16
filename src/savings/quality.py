@@ -129,7 +129,9 @@ def _is_empty_or_truncated(text: str) -> bool:
     True if the answer is empty, or visibly cut off mid-sentence.
 
     "Cut off" means it ends on a comma/colon/dash, or a longer answer (4+
-    words) ends on a word that cannot end a sentence ("... and", "... the").
+    words) ends on a word that cannot end a sentence ("... and", "... the")
+    without a full stop, question or exclamation mark after it ("Would you
+    like that?" is complete).
     A short answer without a full stop ("150", "Paris") is NOT truncated:
     treating every missing full stop as truncation made the classifier reject
     correct one-word answers (measured on the golden set; see the model card).
@@ -139,6 +141,8 @@ def _is_empty_or_truncated(text: str) -> bool:
         return True
     if stripped[-1] in ",:;-(":
         return True
+    if stripped[-1] in ".!?":
+        return False
     words = stripped.split()
     last_word = re.sub(r"[^\w]", "", words[-1].lower())
     return len(words) >= 4 and last_word in _TRAILING_FUNCTION_WORDS

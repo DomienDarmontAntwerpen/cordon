@@ -290,6 +290,7 @@ def test_quality_header_present_when_a_route_was_checked(client, admin_headers, 
     assert resp2.status_code == 200
     assert "X-Cordon-Quality" in resp2.headers
     assert 0.0 <= float(resp2.headers["X-Cordon-Quality"]) <= 1.0
+    assert resp2.headers["X-Cordon-Check"] in {"rules_only", "classifier", "no_confidence"}
 
 
 def test_an_escalated_request_claims_no_routing_saving(client, admin_headers, proven_extraction_route):
@@ -298,6 +299,7 @@ def test_an_escalated_request_claims_no_routing_saving(client, admin_headers, pr
     resp = client.post("/v1/chat/completions", headers=headers, json={
         "model": "gpt-4o", "messages": [{"role": "user", "content": "Please extract the following fields: name, date, amount."}]})
     assert resp.headers["X-Cordon-Fallback"] == "true"
+    assert resp.headers["X-Cordon-Check"] == "non_answer"  # the rule that sent it on
     assert "routing" not in _savings_of_last_request(client, headers)
     assert float(resp.headers["X-Cordon-Cost"]) > float(resp.headers["X-Cordon-Baseline-Cost"])
 
@@ -529,3 +531,14 @@ def test_the_strong_model_refusing_an_escalation_is_a_400_not_an_outage(client, 
     headers = {**team(client, admin_headers, features=["routing"], strong="gpt-4o"), "X-Mock-Bad-Response": "true"}
     resp = client.post("/v1/chat/completions", headers=headers, json=CLASSIFY)
     assert resp.status_code == 400 and resp.json()["error"]["code"] == "provider_rejected"
+
+
+def test_the_response_names_the_kind_of_request(client, admin_headers):
+    """X-Cordon-Kind names the routing bucket; a chat sent with earlier replies is a conversation."""
+    headers = team(client, admin_headers, features=[])
+    question = {"role": "user", "content": "Can I change my delivery address?"}
+    single = client.post("/v1/chat/completions", headers=headers, json={"model": "gpt-4o", "messages": [question]})
+    history = [{"role": "user", "content": "Where is my order?"}, {"role": "assistant", "content": "It ships today."}]
+    conversation = client.post("/v1/chat/completions", headers=headers, json={"model": "gpt-4o", "messages": history + [question]})
+    assert single.headers["X-Cordon-Kind"] == "chat/easy"
+    assert conversation.headers["X-Cordon-Kind"] == "conversation/easy"

@@ -1008,12 +1008,32 @@ function euro(value) {
   return value === null || value === undefined || value === "" ? "-" : `€${Number(value).toFixed(6)}`;
 }
 
+// Two earlier turns sent with the prompt when "support conversation" is ticked: a chat app sends its history.
+const TRY_HISTORY = [
+  { role: "user", content: "I ordered a jacket last week and it has not arrived." },
+  { role: "assistant", content: "Sorry to hear that. Your order shipped on Monday and should arrive within two working days." },
+];
+const KIND_LABELS = {
+  chat: "a single question", conversation: "a conversation, sent with its earlier turns", classification: "classifying a text",
+  summarization: "summarizing a long text", extraction: "extracting data", code: "code", reasoning: "arithmetic / reasoning",
+};
+
+// What the quality check did, in words: X-Cordon-Check names the rule or the check that decided.
+function checkVerdict(check, score, escalated) {
+  const sentOn = "asked the strong model (gpt-4o) instead";
+  if (check === "rules_only") return "rules only (this route was proven without the ML score): the answer passes - kept";
+  if (check === "classifier") return `ML score ${score.toFixed(2)}: ${escalated ? `in doubt - ${sentOn}` : "the answer passes - kept"}`;
+  if (check === "no_confidence" || check === "error") return `could not be checked - ${sentOn}`;
+  return `rule "${(check || "").replaceAll("_", " ")}" fired - ${sentOn}`;
+}
+
 function tryRequestSteps(header) {
   const found = (header("X-Cordon-Guardrails") || "").split(",").filter(Boolean);
   const masked = found.filter((f) => f.startsWith("input_pii_")).map((f) => f.replace("input_pii_", "").replace("=", " x"));
   const route = header("X-Cordon-Route") || "-";
   const escalated = header("X-Cordon-Fallback") === "true";
   const quality = header("X-Cordon-Quality");
+  const check = header("X-Cordon-Check");
   const cached = header("X-Cordon-Cache") && header("X-Cordon-Cache") !== "none";
   const cost = Number(header("X-Cordon-Cost") || 0);
   const baseline = Number(header("X-Cordon-Baseline-Cost") || 0);
@@ -1023,13 +1043,11 @@ function tryRequestSteps(header) {
   ];
   if (!cached) {
     const cheaper = route !== "gpt-4o" || escalated;
-    steps.push(["3. Pick model", cheaper ? "a cheaper model, proven as good for this kind of request (gpt-4.1-mini)" : `${route} - no cheaper model is proven for this kind of request`]);
-    if (quality !== null) {
-      steps.push(["4. Quality check (rules + ML score)", escalated
-        ? `score ${Number(quality).toFixed(2)}: in doubt - asked the strong model (gpt-4o) instead`
-        : `score ${Number(quality).toFixed(2)}: the answer passes - kept`]);
-    }
-    steps.push(["5. Answered by", route]);
+    const [kind, difficulty] = (header("X-Cordon-Kind") || "").split("/");
+    if (kind) steps.push(["3. Kind of request", `${KIND_LABELS[kind] || kind} (${difficulty})`]);
+    steps.push(["4. Pick model", cheaper ? "a cheaper model, proven as good for this kind of request (gpt-4.1-mini)" : `${route} - no cheaper model is proven for this kind of request`]);
+    if (quality !== null) steps.push(["5. Quality check", checkVerdict(check, Number(quality), escalated)]);
+    steps.push(["6. Answered by", route]);
   }
   steps.push(["Cost", `${euro(cost)} instead of ${euro(baseline)} without Cordon` + (baseline > 0 ? ` - ${Math.round((1 - cost / baseline) * 100)}% saved` : "")]);
   return steps;
@@ -1058,6 +1076,11 @@ function showTryFacts(response, body) {
   document.getElementById("try-result").hidden = false;
 }
 
+function tryMessages(prompt) {
+  const history = document.getElementById("try-history").checked ? TRY_HISTORY : [];
+  return [...history, { role: "user", content: prompt }];
+}
+
 async function sendTryRequest(event) {
   event.preventDefault();
   const key = document.getElementById("try-key").value.trim();
@@ -1076,7 +1099,7 @@ async function sendTryRequest(event) {
     const response = await fetch("/v1/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "gpt-4o", messages: [{ role: "user", content: prompt }] }),
+      body: JSON.stringify({ model: "gpt-4o", messages: tryMessages(prompt) }),
     });
     const body = await response.json();
     if (!response.ok) throw new Error(body.error?.message || `HTTP ${response.status}`);

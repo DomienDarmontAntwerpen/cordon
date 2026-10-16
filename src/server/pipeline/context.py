@@ -98,6 +98,7 @@ class RequestContext:
     total_actual_eur: float = 0.0
     fallback_occurred: bool = False
     quality_score: float | None = None
+    quality_reason: str | None = None  # why the check kept or sent on the answer (quality.GateVerdict.reason)
     processed_text: str = ""
     restored_message: dict = field(default_factory=dict)
 

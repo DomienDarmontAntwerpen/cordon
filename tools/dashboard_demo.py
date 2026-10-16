@@ -28,6 +28,8 @@ URL = f"http://127.0.0.1:{PORT}"
 DB_PATH = os.path.join(tempfile.mkdtemp(), "dashboard_demo.sqlite")
 FAQ = ["What are your opening hours?", "How do I reset my password?", "Where is my order?",
        "Can I return a product after 30 days?", "How do I change my delivery address?", "Do you ship to Belgium?"]
+SUPPORT_HISTORY = [{"role": "user", "content": "I ordered a jacket last week and it has not arrived."},
+                   {"role": "assistant", "content": "Sorry to hear that. Your order shipped on Monday and should arrive within two working days."}]
 CONTRACT_HISTORY = [{"role": "user", "content": "Here is the contract text. " * 40}, {"role": "assistant", "content": "Noted."}] * 6
 
 
@@ -84,6 +86,8 @@ def send_traffic(client: httpx.Client) -> None:
     TRY_KEY = try_team["Authorization"].removeprefix("Bearer ")
     for review in ("a warm, funny film", "dull and far too long", "the best acting this year", "I walked out halfway"):
         ask(client, try_team, f'Classify the sentiment of this review as positive or negative: "{review}"', tags="reviews")
+    for follow_up in ("Can I still change the delivery address?", "Can I get a refund if it is late?", "Which carrier is it?"):
+        ask(client, try_team, follow_up, tags="support-chats", history=SUPPORT_HISTORY)  # a conversation: its own route
 
     customer_service_traffic(client, support, rng)
     for i in range(25):
@@ -105,8 +109,8 @@ def spread_over_the_day() -> None:
 
 def take_screenshot(path: str) -> None:
     """
-    Log in with the system's Chrome and save three screenshots: the Overview tab (path), the
-    Try-a-request tab after one request (_try: the steps Cordon took), and the teams (_teams).
+    Log in with the system's Chrome and save two screenshots: the Overview tab (path) and the teams
+    (_teams). The try tab's screenshot is a live one: `tools/live_try_screenshot.py`.
     """
     from playwright.sync_api import sync_playwright
 
@@ -120,12 +124,6 @@ def take_screenshot(path: str) -> None:
         page.click(".tab[data-tab-target=overview]")
         page.wait_for_timeout(2500)
         page.screenshot(path=path, clip={"x": 0, "y": 0, "width": 1440, "height": 1100})
-        page.click(".tab[data-tab-target=try]")
-        page.fill("#try-key", TRY_KEY)
-        page.click("#try-send")
-        page.wait_for_selector("#try-result:not([hidden])")
-        page.wait_for_timeout(1000)
-        page.screenshot(path=path.replace(".png", "_try.png"), clip={"x": 0, "y": 0, "width": 1440, "height": 820})
         page.click(".tab[data-tab-target=teams]")
         page.wait_for_timeout(1000)
         page.screenshot(path=path.replace(".png", "_teams.png"), clip={"x": 0, "y": 0, "width": 1440, "height": 760})

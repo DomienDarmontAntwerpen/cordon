@@ -1,6 +1,6 @@
 """
-The dashboard's "Try a request" tab, live: one real request through Cordon (a real answer, under
-0.1 cent), saved as a screenshot. Needs OPENAI_API_KEY and the Cordon secrets in .env.
+The dashboard's "Try a request" tab, live: one real support-conversation turn through Cordon (a real
+answer, under 0.1 cent), saved as a screenshot. Needs OPENAI_API_KEY and the Cordon secrets in .env.
 
     .venv/bin/python -m tools.live_try_screenshot docs/images/dashboard_try.png
 """
@@ -20,6 +20,7 @@ from src.server import settings as settings_module  # noqa: E402
 from src.server.gateway import create_app  # noqa: E402
 
 PORT = 8796
+TRY_PROMPT = "If it is late, can I get a refund? You can reach me at jan.peeters@example.com"
 URL = f"http://127.0.0.1:{PORT}"
 
 
@@ -62,6 +63,8 @@ def take(path: str, admin_key: str, team_key: str) -> str:
         page.wait_for_selector("#app:not([hidden])")
         page.click(".tab[data-tab-target=try]")
         page.fill("#try-key", team_key)
+        page.fill("#try-prompt", TRY_PROMPT)
+        page.check("#try-history")  # sent as the next turn of a support conversation: the conversation route
         page.click("#try-send")
         page.wait_for_selector("#try-result:not([hidden])", timeout=60000)
         page.wait_for_timeout(1000)

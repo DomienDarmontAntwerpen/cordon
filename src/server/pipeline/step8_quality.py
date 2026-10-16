@@ -36,7 +36,7 @@ def run(ctx: RequestContext, services: Services) -> JSONResponse | None:
         except Exception:
             logger.warning("quality check failed: asking the strong model", exc_info=True)
             verdict = quality.GateVerdict(True, 0.0, "error")
-        ctx.quality_score = verdict.score
+        ctx.quality_score, ctx.quality_reason = verdict.score, verdict.reason
         if verdict.escalate:
             error = _escalate_to_strong(ctx, services)
             if error is not None:

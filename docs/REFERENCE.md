@@ -34,9 +34,9 @@ in order.
 | 3. Stop loops | `step3_loop_detection.py` | Stop an AI agent that keeps sending the same message. |
 | 4. Shrink | `step4_optimize.py` | Remove duplicated text, shorten long histories and tool output, downscale images. |
 | 5. Cache | `step5_cache.py` | Answered before? Return that answer for free. |
-| 6. Pick model | `step6_routing.py` | A cheaper model only where it was proven - together with its check - as good; otherwise the strong model. |
+| 6. Pick model | `step6_routing.py` | A cheaper model only where it was proven - together with its check - as good; otherwise the strong model. The answer names the kind of request (`X-Cordon-Kind`). |
 | 7. Ask the AI | `step7_generate.py` | Call the model; if a provider fails, try the next one. |
-| 8. Check quality | `step8_quality.py` | A cheaper model's answer is scored; below the route's proven threshold, the strong model is asked once. |
+| 8. Check quality | `step8_quality.py` | A cheaper model's answer is scored; below the route's proven threshold, the strong model is asked once. `X-Cordon-Check` says what decided (`rules_only`, `classifier`, or the rule that fired). |
 | 9. Protect output | `step9_output.py` | Redact leaked personal data or hidden instructions, put the real values back, book the cost. |
 
 **Golden rule:** if a *money-saving* step breaks, the request goes through without that saving; if
@@ -296,7 +296,7 @@ data processing addendum, and an agreement on who runs Cordon.
 
 ## Evidence
 
-All live runs used OpenAI (13-16 October 2026), under **EUR 10** together (the sum of each run's own
+All live runs used OpenAI (13-16 October 2026), about **EUR 10** together (the sum of each run's own
 cost count). About 3,000 questions with known or reference answers, from public datasets (see
 [Data sources](#data-sources)), drawn by `evaluation/fetch_eval_sets.py` and
 `evaluation/company_day.py` in never-overlapping samples. Every answer is stored with its score in
@@ -314,15 +314,18 @@ answer-length cap, loop stop, masking). Real cost of both; quality of both score
 
 | Kind | Requests | EUR straight | EUR Cordon | Saved | Quality straight / Cordon |
 |---|---|---|---|---|---|
-| Classification | 100 | 0.0631 | 0.0167 | 74% | 0.93 / 0.94 |
-| Support questions | 80 | 0.1996 | 0.0341 | 83% | 0.28 / 0.35 |
-| Chats with history | 60 | 0.2147 | 0.2047 | 5% | 0.38 / 0.40 |
-| Summaries | 60 | 0.1662 | 0.0412 | 75% | 0.46 / 0.45 |
-| **Whole day** | 300 | 0.6436 | 0.2967 | **54%** | **0.55 / 0.58** |
+| Classification | 100 | 0.0626 | 0.0173 | 72% | 0.93 / 0.95 |
+| Support questions | 80 | 0.1932 | 0.0424 | 78% | 0.30 / 0.29 |
+| Chats with history | 60 | 0.2153 | 0.0297 | 86% | 0.37 / 0.45 |
+| Summaries | 60 | 0.1668 | 0.0415 | 75% | 0.46 / 0.46 |
+| **Whole day** | 300 | 0.6380 | 0.1308 | **80%** | **0.56 / 0.58** |
 
-Per kind the quality intervals are wide at 60-100 requests ("not proven" at this size); the routes
-themselves are proven on larger rounds below. The day before the chat and summary routes existed,
-the same day saved 29%.
+Over the whole day Cordon's quality is no lower (95% interval of the difference +0.004 to +0.036).
+Per kind the intervals are wide at 60-100 requests ("not proven" at this size), and the figures
+move a few points between runs (support was 0.28 / 0.35 in the previous run); the routes
+themselves are proven on larger rounds below. The same day saved 29% before the chat and summary
+routes, and 54% before the conversation route. The day was measured just before a fix to the
+"cut off" rule (below); the fix only lowers how often an answer is sent on.
 
 ### Answer quality through Cordon
 
@@ -346,8 +349,9 @@ the average, and as a loss only when they fail outright. The routing table
 | Kind of request | Questions | Route | Quality vs gpt-4o | Cost vs gpt-4o |
 |---|---|---|---|---|
 | Classification | 729 | gpt-4.1-mini + check at 0.5 (17% sent on) | 91.1% vs 90.8% | 33% |
-| Summaries (long texts) | 365 | gpt-4.1-mini | 0.465 vs 0.460 | 17% |
-| Chat / general questions | 714 | gpt-4.1-mini + check at 0.5 (54% sent on) | 0.661 vs 0.652 | 70% |
+| Summaries (long texts) | 365 | gpt-4.1-mini | 0.465 vs 0.460 | 16% |
+| Conversations (sent with earlier turns) | 375 | gpt-4.1-mini, rules only (1% sent on) | 0.457 vs 0.347 | 17% |
+| Chat / general questions | 536 | gpt-4.1-mini + check at 0.5 (44% sent on) | 75.4% vs 75.0% | 60% |
 | Arithmetic / reasoning | 429 | none proven | gpt-4o-mini 95% vs 97% (asked plainly) | - |
 | Code | 189 | none proven | | - |
 
@@ -358,6 +362,23 @@ What these numbers do **not** show:
   none was wrong, all were different or less complete. Both routes were then **confirmed on fresh
   questions fixed in advance** (cefee7f): 200 new summaries (0.471 vs 0.468) and 200 general
   questions - open questions, advice, brainstorming, writing (0.401 vs 0.405, within the margin).
+- **Conversations became their own kind after seeing data:** the chat route's 200 support chats
+  showed gpt-4.1-mini doing well on requests sent with earlier turns, mixed in with general
+  questions where it does not. The split (`routing.classify_request`: a chat with an earlier
+  assistant reply is a conversation) was committed with its decision rule before a **fresh round of
+  200 conversations** was answered (4922b26); on the 197 both models answered: 0.459 vs 0.339, a
+  failed answer on at most 1.5%, 17% of the cost - passed. The conversations are support questions
+  from one public dataset stitched into chats, scored by closeness to that dataset's reference
+  answers; on a company's own chats the gap may be smaller.
+- **Personal data changes what a model says:** with a masked email (`<EMAIL_1>`) in a support
+  question, gpt-4.1-mini more often answers "I can't access your account"; the rules see a refusal
+  and ask gpt-4o, so such a request costs *more* than going straight (both models are paid), not
+  less quality. In six tries of one such prompt, three were sent on; on the measured day, 2 of 60
+  conversations were. A pilot on real traffic shows the real share.
+- **The "cut off" rule was fixed** (16 October): a complete answer ending in a short word and a
+  question or exclamation mark ("Would you like that?") counted as cut off - 39 of 9,255 stored
+  answers. Retraining left the ML model byte-identical; the routes stayed the same, and the share
+  sent on dropped (conversations 1.9% to 0.8%, summaries 0.5% to 0%).
 - **The quality check adds little on classification and summaries.** On gpt-4.1-mini's
   classification answers it separates right from wrong barely better than chance (AUC 0.58); the
   summary route runs on the rules only. Those routes hold because gpt-4.1-mini itself is about as

@@ -82,6 +82,9 @@ def test_quality_gate_accepts_short_correct_answers_and_flags_real_truncation():
     assert quality._is_empty_or_truncated("")
     assert quality._is_empty_or_truncated("The capital of France is")
     assert quality._is_empty_or_truncated("Water boils at 100 degrees and")
+    # A finished sentence may end on such a word: 39 complete live answers were flagged before this rule.
+    assert not quality._is_empty_or_truncated("I can give you the contact details. Would you like that?")
+    assert not quality._is_empty_or_truncated("Let me know if there is anything else I can help with!")
     assert quality.obvious_failure("150") is None and quality.obvious_failure("Paris") is None
 
 
