@@ -54,7 +54,7 @@ judge, gpt-4o itself), on a 0-1 scale of closeness - not a share of correct answ
   conversations stitched from a public dataset. gpt-4.1-mini scores *higher* there mostly because
   gpt-4o writes twice as long as the reference; so a **blind check** followed, fixed in advance: on 193
   fresh conversations gpt-4o, as judge, preferred gpt-4.1-mini's reply 56 times, its own 36 times,
-  and called 101 a tie - as good, not better.
+  and called 101 a tie - at least as good.
 - Arithmetic and code stay on gpt-4o. How each number was measured, and what it does *not* show:
   [docs/REFERENCE.md - Evidence](docs/REFERENCE.md#evidence). Repeat it: `python -m evaluation.company_day`.
 

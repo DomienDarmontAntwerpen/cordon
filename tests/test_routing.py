@@ -159,7 +159,9 @@ _HISTORY = [{"role": "user", "content": "I ordered a jacket last week."}, {"role
      {"role": "user", "content": "And if he then buys 3 bags of 4 apples each, what is his total now?"}],
     [{"role": "user", "content": "Tom has 12 apples and gives 5 away. How many are left?"},
      {"role": "assistant", "content": "7."}, {"role": "user", "content": "And if he then buys 3 bags of 4 apples each?"}],
-    # instructions (a coding assistant), tools, attachments and long contexts were never in the evidence
+    # instructions (a coding assistant), tools, attachments, code and long contexts were never in the evidence
+    [{"role": "user", "content": "Can you help with my script?"}, {"role": "assistant", "content": "```python\nprint(1)\n```"},
+     {"role": "user", "content": "Now make it faster."}],
     [{"role": "system", "content": "You are a Python coding assistant."}, *_HISTORY, {"role": "user", "content": "Can you change it?"}],
     [{"role": "user", "content": "What is the weather in Ghent?"},
      {"role": "assistant", "content": None, "tool_calls": [{"id": "c1", "type": "function", "function": {"name": "weather", "arguments": "{}"}}]},

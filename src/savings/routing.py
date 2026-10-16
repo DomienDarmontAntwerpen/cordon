@@ -128,6 +128,8 @@ def _is_chat_conversation(messages: list[dict]) -> bool:
     """A plain conversation in which every user turn is a chat question (no code, no arithmetic)."""
     if not messages_module.is_plain_conversation(messages, _CONVERSATION_MAX_MESSAGES, _CONVERSATION_MAX_WORDS):
         return False
+    if any(_CODE_BLOCK_REGEX.search(messages_module.message_text(m.get("content"))) for m in messages):
+        return False  # code anywhere in the conversation, the assistant's replies included
     user_texts = [messages_module.message_text(m.get("content")).lower() for m in messages if m.get("role") == "user"]
     return all(_category(text, None) == "chat" and len(_NUMBER_REGEX.findall(text)) < 2 for text in user_texts)
 

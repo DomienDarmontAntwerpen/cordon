@@ -54,7 +54,8 @@ def protect_output(ctx: RequestContext, services: Services) -> JSONResponse | No
         return openai_error(422, "output leaked the system prompt", "invalid_request_error", code="output_blocked")
 
     ctx.processed_text = result.text
-    step5_cache.store_answer(ctx, services, ctx.processed_text)
+    if ctx.answer_finish_reason != "length":  # a cut-off answer is never replayed as a complete one
+        step5_cache.store_answer(ctx, services, ctx.processed_text)
 
     tool_calls = [tc.model_dump() for tc in ctx.answer_tool_calls] if ctx.answer_tool_calls else None
     ctx.restored_message, unrestored = guardrails.restore_message(

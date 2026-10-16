@@ -104,6 +104,7 @@ def _relay_provider_stream(ctx: RequestContext, services: Services, stream: _Str
     guard = _output_guard(ctx)
     try:
         for chunk in provider_stream:
+            ctx.answer_finish_reason = _finish_reason(chunk) or ctx.answer_finish_reason
             delta = _delta_text(chunk)
             safe_text = guard.feed(delta) if delta else ""
             if safe_text:
@@ -117,7 +118,7 @@ def _relay_provider_stream(ctx: RequestContext, services: Services, stream: _Str
     if final_text:
         stream.parts.append(final_text)
         yield stream.chunk(ctx, final_text)
-    yield stream.chunk(ctx, "", finish_reason="stop")
+    yield stream.chunk(ctx, "", finish_reason=ctx.answer_finish_reason)  # the provider's, e.g. "length"
     ctx.provider_ms = (time.perf_counter() - provider_start) * 1000
     _record_guard_findings(ctx, guard)
 
@@ -206,6 +207,12 @@ def _delta_text(chunk) -> str:
     """The text content of one provider stream chunk ("" if it carries none)."""
     choices = chunk.model_dump().get("choices") or []
     return (choices[0].get("delta") or {}).get("content") or "" if choices else ""
+
+
+def _finish_reason(chunk) -> str | None:
+    """The provider's finish_reason in one stream chunk (only the last chunk carries one)."""
+    choices = chunk.model_dump().get("choices") or []
+    return choices[0].get("finish_reason") if choices else None
 
 
 def _record_guard_findings(ctx: RequestContext, guard: guardrails.StreamingOutputGuardrail) -> None:

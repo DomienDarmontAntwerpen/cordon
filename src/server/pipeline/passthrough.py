@@ -63,7 +63,7 @@ def _as_single_chunk_stream(response):
     body = response.model_dump()
     chunk = {
         "id": body.get("id"), "object": "chat.completion.chunk", "created": body.get("created"), "model": body.get("model"),
-        "choices": [{"index": 0, "delta": {"content": body["choices"][0]["message"].get("content") or ""}, "finish_reason": "stop"}],
+        "choices": [{"index": 0, "delta": {"content": body["choices"][0]["message"].get("content") or ""}, "finish_reason": body["choices"][0].get("finish_reason") or "stop"}],
     }
     yield f"data: {json.dumps(chunk)}\n\n".encode("utf-8")
     yield b"data: [DONE]\n\n"

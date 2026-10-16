@@ -378,14 +378,18 @@ What these numbers do **not** show:
   the strict right/wrong rule gpt-4.1-mini scores lower on 37 of 200 and would not pass.
 - **So a blind pairwise check was added, fixed in advance** (f0f20b4, `evaluation/pairwise_judge.py`):
   gpt-4o sees the conversation and both replies, models hidden, judged twice in both orders (a win
-  needs both). On the 193 fresh conversations: gpt-4.1-mini preferred 56 times, gpt-4o 36, tie 101;
-  gpt-4.1-mini's share 0.55 (95% 0.50-0.60), above the fixed bar of 0.45 - passed, EUR 0.89.
-  `reports/pairwise_conversations.json` holds every judgement.
+  needs both). On the 193 fresh conversations (197 minus 4 the narrower shape below leaves out):
+  gpt-4.1-mini preferred 56 times, gpt-4o 36, tie 101; gpt-4.1-mini's share 0.55 (95% 0.50-0.60),
+  above the fixed bar of 0.45 - passed, EUR 0.89. The judge leans slightly to the first reply (A 160
+  times, B 128); judging both orders cancels that. `reports/pairwise_conversations.json` holds every judgement.
 - **The conversations are synthetic:** four unrelated support questions from one public dataset
   (27 intents) stitched into a chat, so this is a same-distribution test, not one on new kinds of
   chat. Hence the route only takes that shape (`routing._is_chat_conversation`): user and assistant
-  text, up to 9 messages and 1,000 words, chat questions only, no user turn with two or more
-  numbers. A system prompt, tools, attachments, code or arithmetic keep a request out of it.
+  text, up to 9 messages and 1,000 words, no code block anywhere, and user turns that the keyword
+  rules see as chat questions with fewer than two numbers. A system prompt, tools or attachments keep
+  a request out. The keyword rules have the same limit as for single questions: arithmetic in words
+  ("twelve times thirteen") or a SQL request is not recognised. The evidence had exactly 9 messages;
+  shorter conversations are assumed to be no harder.
 - **Personal data changes what a model says:** with a masked email (`<EMAIL_1>`) in a support
   question, gpt-4.1-mini more often answers "I can't access your account"; the rules see a refusal
   and ask gpt-4o, so such a request costs *more* than going straight (both models are paid), not

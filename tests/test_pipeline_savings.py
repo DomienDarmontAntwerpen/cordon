@@ -4,6 +4,8 @@ Steps 4, 5, 6 and 8, through the API: trim, cache, routing, the quality gate.
 Run: .venv/bin/python -m pytest tests/test_pipeline_savings.py -v
 """
 
+import json
+
 import pytest
 
 from helpers import team, list_message
@@ -573,3 +575,31 @@ def test_an_answer_the_provider_cut_off_is_sent_on_and_reported(client, admin_he
     monkeypatch.setattr(litellm_module, "completion", always_cut_off)
     capped = client.post("/v1/chat/completions", headers=team(client, admin_headers, features=[]), json=body)
     assert capped.json()["choices"][0]["finish_reason"] == "length"
+
+
+def test_a_cut_off_answer_is_never_cached_and_a_stream_reports_the_providers_finish_reason(client, admin_headers, monkeypatch):
+    """finish_reason "length" is passed on as it came - in a stream too - and such an answer is not replayed from the cache."""
+    import litellm as litellm_module
+
+    real = litellm_module.completion
+
+    def cut_off(**kwargs):
+        """The provider hits the token limit: the last stream chunk, or the one answer, says "length"."""
+        response = real(**kwargs)
+        if not kwargs.get("stream"):
+            response.choices[0].finish_reason = "length"
+            return response
+        chunks = list(response)
+        chunks[-1].choices[0].finish_reason = "length"
+        return iter(chunks)
+
+    monkeypatch.setattr(litellm_module, "completion", cut_off)
+    headers = team(client, admin_headers, features=["cache"])
+    body = {"model": "gpt-4o", "messages": [{"role": "user", "content": "Tell me about the delivery terms."}]}
+    first = client.post("/v1/chat/completions", headers=headers, json=body)
+    second = client.post("/v1/chat/completions", headers=headers, json=body)
+    assert first.json()["choices"][0]["finish_reason"] == "length" and second.headers["X-Cordon-Cache"] == "none"
+
+    streamed = client.post("/v1/chat/completions", headers=headers, json={**body, "stream": True})
+    events = [json.loads(line[6:]) for line in streamed.text.splitlines() if line.startswith("data: {")]
+    assert [e["choices"][0]["finish_reason"] for e in events if e["choices"][0]["finish_reason"]] == ["length"]
